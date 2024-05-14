@@ -29,9 +29,8 @@ export default function Budtender() {
 
     const responseMessage = await submitUserMessage(promptText);
     setMessages((currentMessages) => [...currentMessages, { ...responseMessage, role: 'assistant' }]);
-    setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // 3000 milliseconds = 3 seconds
+    
   };
 
   return (
