@@ -148,7 +148,7 @@ export default function FullList() {
         setLoading(true);
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:3000/api/products');
+            const response = await fetch('https://greenest-web-app.vercel.app//api/products');
             const jsonData = await response.json();
             console.log("API Response:", jsonData);
             setData(jsonData);

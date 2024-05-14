@@ -145,7 +145,7 @@ async function checkout(product: ProductInfo) {
 }
 
 async function recommendProducts(userInput: string) {
-  const productsResponse = await fetch("http://localhost:3000/api/products");
+  const productsResponse = await fetch("https://greenest-web-app.vercel.app/api/products");
   const products = await productsResponse.json();
 
   // Construct the prompt using the fetched products data
