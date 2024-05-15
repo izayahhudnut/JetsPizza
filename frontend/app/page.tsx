@@ -7,7 +7,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import Image from 'next/image';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-
+export const runtime = "edge"
 
 
 export default function Budtender() {
