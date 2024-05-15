@@ -9,7 +9,7 @@ export default function StartCard(parameters: any) {
   return (
     <>
       <p>
-        Here is a list of potential effects. Choose one to proceed to finding a product.
+        Here is a list of potential effects. Choose one to proceed to finding the right product.
       </p>
       <div className="mt-2 flex flex-wrap">
         {effects.map((effect, index) => (
