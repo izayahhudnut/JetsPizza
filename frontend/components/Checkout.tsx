@@ -144,7 +144,7 @@ function CheckoutForm({
               <div className="flex flex-row items-center mb-3">
                 <h2 className="text-2xl font-bold mr-2">Order Confirmation</h2>
                 <div className="ml-4">
-                  <Image src="/success.webp" width={35} height={35} alt="Order Confirmation" />
+                  <img src="/success.webp" width={35} height={35} alt="Order Confirmation" />
                 </div>
               </div>
               <p className="mb-4">Your order was successful!</p>
@@ -158,7 +158,7 @@ function CheckoutForm({
       </div>
       <div className="bg-custom-gray p-5 rounded-xl flex-col shadow-sm">
         <div className="flex flex-col items-center space-y-3 border-b pb-3">
-          <Image
+          <img
             src={productInfo.image}
             alt={`${productInfo.image}`}
             className="w-24 h-24 object-contain rounded-xl"
@@ -249,7 +249,7 @@ export default function CheckoutCard({ productInfo }: { productInfo: ProductInfo
               </button>
             </div>
             </div>
-            <Image
+            <img
               src={productInfo.image}
               alt={`${productInfo.image}`}
               className="w-24 h-24 object-contain rounded-xl"

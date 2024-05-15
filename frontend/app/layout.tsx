@@ -71,7 +71,7 @@ export default function RootLayout({
 
           <div className="flex-1 flex-col">
             <header className="h-[64px] p-4 bg-custom-gray border-b flex justify-end px-5">
-              <Image 
+              <img 
                 src='/template.png'
                 width={30}
                 height={30}
