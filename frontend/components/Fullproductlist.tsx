@@ -19,7 +19,103 @@ function Skeleton() {
                 </div>
                 <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
             </div>
-            {/* Repeat similar blocks as needed */}
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="flex w-full space-y-1 flex-col">
+                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex flex pt-2 row items-center space-x-5">
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+            </div>
+          
         </>
     );
 }
