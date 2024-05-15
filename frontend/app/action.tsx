@@ -145,75 +145,87 @@ async function checkout(product: ProductInfo) {
 }
 
 async function recommendProducts(userInput: string) {
-  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`);
-  const products = await productsResponse.json();
+  try {
+    const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`);
+    if (!productsResponse.ok) {
+      throw new Error(`Failed to fetch products: ${productsResponse.statusText}`);
+    }
+    const products = await productsResponse.json();
 
-  // Construct the prompt using the fetched products data
-  const prompt = `Given the user input: "${userInput}", recommend three cbd products from the following list that match the user's preferences:
+    // Construct the prompt using the fetched products data
+    const prompt = `Given the user input: "${userInput}", recommend three cbd products from the following list that match the user's preferences:
 
 ${JSON.stringify(products)}
 
 The JSON output should have the following structure:
 [
-        {
-            "product_name": "Product 1",
-            "strain_type": "Strain Type 1",
-            "brand_name": "Brand 1",
-            "mg_content": "MG Content 1",
-            "price": "Price 1",
-            "dispensary": "Dispensary 1",
-            "explanation": "A explination on why this product was recommended",
-            "description": "Elevate your experience with our premium Strain Type 1, a flagship product from Brand 1. Each unit contains MG Content 1 mg of pure, lab-tested THC, ensuring a consistent and reliable session. Available exclusively at Dispensary 1 for Price 1, it’s your go-to choice for unmatched quality.",
-            "image": "https://imageurl",
+    {
+        "product_name": "Product 1",
+        "strain_type": "Strain Type 1",
+        "brand_name": "Brand 1",
+        "mg_content": "MG Content 1",
+        "price": "Price 1",
+        "dispensary": "Dispensary 1",
+        "explanation": "A explanation on why this product was recommended",
+        "description": "Elevate your experience with our premium Strain Type 1, a flagship product from Brand 1. Each unit contains MG Content 1 mg of pure, lab-tested THC, ensuring a consistent and reliable session. Available exclusively at Dispensary 1 for Price 1, it’s your go-to choice for unmatched quality.",
+        "image": "https://imageurl"
+    },
+    {
+        "product_name": "Product 2",
+        "strain_type": "Strain Type 2",
+        "brand_name": "Brand 2",
+        "mg_content": "MG Content 2",
+        "price": "Price 2",
+        "dispensary": "Dispensary 2",
+        "explanation": "A explanation on why this product was recommended",
+        "description": "Discover the powerful effects of Strain Type 2 from Brand 2, offering MG Content 2 mg of premium THC per package. Perfect for both new and experienced users, this product promises potent relief and is priced at Price 2 at Dispensary 2. Don’t miss out on this exclusive offering.",
+        "image": "https://imageurl"
+    },
+    {
+        "product_name": "Product 3",
+        "strain_type": "Strain Type 3",
+        "brand_name": "Brand 3",
+        "mg_content": "MG Content 3",
+        "price": "Price 3",
+        "dispensary": "Dispensary 3",
+        "explanation": "A explanation on why this product was recommended",
+        "description": "Step into a new level of potency with Strain Type 3 from Brand 3, containing MG Content 3 mg of the finest THC. Available for Price 3 only at Dispensary 3, this product is crafted for those seeking the highest quality and exceptional effects.",
+        "image": "https://imageurl"
+    }
+]`;
 
-          },
-          {
-            "product_name": "Product 2",
-            "strain_type": "Strain Type 2",
-            "brand_name": "Brand 2",
-            "mg_content": "MG Content 2",
-            "price": "Price 2",
-            "dispensary": "Dispensary 2",
-            "explanation": "A explination on why this product was recommended",
-            "description": "Discover the powerful effects of Strain Type 2 from Brand 2, offering MG Content 2 mg of premium THC per package. Perfect for both new and experienced users, this product promises potent relief and is priced at Price 2 at Dispensary 2. Don’t miss out on this exclusive offering.",
-            "image": "https://imageurl",
-          },
-          {
-            "product_name": "Product 3",
-            "strain_type": "Strain Type 3",
-            "brand_name": "Brand 3",
-            "mg_content": "MG Content 3",
-            "price": "Price 3",
-            "dispensary": "Dispensary 3",
-            "explanation": "A explination on why this product was recommended",
-            "description": "Step into a new level of potency with Strain Type 3 from Brand 3, containing MG Content 3 mg of the finest THC. Available for Price 3 only at Dispensary 3, this product is crafted for those seeking the highest quality and exceptional effects.",
-            "image": "https://imageurl",
-         
-          }
-    
-    ]
-    The products you can choose from are `;
-  
     const openaiResponse = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
-         {
-            role: 'system',
-            content: prompt,
-         }
+        {
+          role: 'user',
+          content: prompt,
+        }
       ],
     });
-  
+
     const jsonOutput = openaiResponse.choices[0]?.message?.content;
     if (!jsonOutput) {
       throw new Error("Unexpected response from OpenAI API");
     }
 
     console.log("Raw JSON output:", jsonOutput);
-    const recommendedProducts = JSON.parse(jsonOutput);
 
-    return recommendedProducts;
+    // Validate if the response is a valid JSON string
+    try {
+      const recommendedProducts = JSON.parse(jsonOutput);
+      return recommendedProducts;
+    } catch (error) {
+      console.error("Error parsing JSON:", jsonOutput);
+      throw new Error("Failed to parse JSON response from OpenAI API");
+    }
+
+  } catch (error) {
+    console.error("Error in recommendProducts:", error);
+    throw error;
   }
+}
+
 
  
 

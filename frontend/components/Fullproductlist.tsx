@@ -220,7 +220,7 @@ export default function FullList() {
                         .map((type) => (
                             <div key={type} className="flex items-center cursor-pointer justify-between" onClick={() => handleTypeChange(type)}>
                                 <div className="flex items-center space-x-2">
-                                    <div className={`h-3 w-3 rounded border ${selectedTypes.includes(type) ? 'bg-green-700' : 'white'}`}></div>
+                                    <div className={`h-3 w-3 rounded border border-gray-400 ${selectedTypes.includes(type) ? 'bg-green-700' : 'white'}`}></div>
                                     <p className="text-xs">{type}</p>
                                 </div>
                                 <div className="bg-gray-200 opacity-50 p-1 rounded">
@@ -237,7 +237,7 @@ export default function FullList() {
                         .map((brand) => (
                             <div key={brand} className="flex items-center cursor-pointer justify-between" onClick={() => handleBrandChange(brand)}>
                                 <div className="flex items-center space-x-2">
-                                    <div className={`h-3 w-3 rounded border ${selectedBrands.includes(brand) ? 'bg-green-700' : 'white'}`}></div>
+                                    <div className={`h-3 w-3 rounded border border-gray-400 ${selectedBrands.includes(brand) ? 'bg-green-700' : 'white'}`}></div>
                                     <p className="text-xs">{brand}</p>
                                 </div>
                                 <div className="bg-gray-200 opacity-50 p-1 rounded">
@@ -254,8 +254,8 @@ export default function FullList() {
                         .map((dispensary) => (
                             <div key={dispensary} className="flex items-center cursor-pointer justify-between" onClick={() => handleDispensaryChange(dispensary)}>
                                 <div className="flex items-center space-x-2">
-                                    <div className={`h-3 w-3 rounded border ${selectedDispensaries.includes(dispensary) ? 'bg-green-700' : 'white'}`}></div>
-                                    <p className="text-xs">{dispensary}</p>
+                                    <div className={`h-3 w-3 rounded border border-gray-400 ${selectedDispensaries.includes(dispensary) ? 'bg-green-700' : 'white'}`}></div>
+                                    <p className="text-xs">{dispensary.length > 15 ? `${dispensary.substring(0,15)}... `: dispensary}</p>
                                 </div>
                                 <div className="bg-gray-200 opacity-50 p-1 rounded">
                                     <p className="text-xs">{data.filter((product) => product.dispensary === dispensary).length}</p>
