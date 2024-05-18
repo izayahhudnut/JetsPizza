@@ -7,7 +7,6 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import Link from 'next/link';
 import LocalFloristOutlinedIcon from '@mui/icons-material/LocalFloristOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import GoogleIcon from '@mui/icons-material/Google';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 
 import { AI } from './action'
@@ -29,16 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-row">
           <div className="flex flex-col bg-gray-200 bg-opacity-50 w-64 min-h-screen bg-white border-r">
-            <div className="flex flex-row items-center justify-between py-3 px-3 border-b bg-custom-gray mb-4">
-              <div className="inline-flex items-center justify-center h-10 w-10 rounded-full">
-                <div className="text-green-800">
-                  <GoogleIcon />
-                </div>
-              </div>
-              <div className="py-1.5 px-2 bg-white rounded-xl border hover:bg-gray-200 hover:bg-opacity-20 hover:cursor-pointer">
-                <NotificationsOutlinedIcon style={{ fontSize: '20px' }} />
-              </div>
-            </div>
+          
 
             <div className="flex flex-col h-full px-5 justify-between">
               <div className="space-y-1">
@@ -70,14 +60,7 @@ export default function RootLayout({
           </div>
 
           <div className="flex-1 flex-col">
-            <header className="h-[64px] p-4 bg-custom-gray border-b flex justify-end px-5">
-              <img 
-                src='/template.png'
-                width={30}
-                height={30}
-                alt="Logo"
-              />
-            </header>
+        
 
             <AI>{children}</AI>
           </div>

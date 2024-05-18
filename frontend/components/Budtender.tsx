@@ -34,7 +34,7 @@ export default function Budtender() {
   };
 
   return (
-    <div className="relative h-[calc(100vh-64px)] pt-10 max-w-[50rem] mx-auto pb-10">
+    <div className="relative h-screen pt-10 max-w-[50rem] mx-auto pb-10">
       {messages.length === 0 ? (
         <div className="flex flex-col items-center h-full">
           <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-800 to-gray-700 text-transparent bg-clip-text">
