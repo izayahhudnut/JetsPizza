@@ -34,7 +34,7 @@ export default function Budtender() {
   };
 
   return (
-    <div className="relative h-screen pt-10 max-w-[50rem] mx-auto pb-10">
+    <div className="relative h-screen max-w-[50rem] mx-auto pb-10">
       {messages.length === 0 ? (
         <div className="flex flex-col items-center h-full">
           <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-800 to-gray-700 text-transparent bg-clip-text">
@@ -210,7 +210,7 @@ export default function Budtender() {
           ))}
         </div>
       )}
-      <div className="absolute bottom-0 w-full mb-4 bg-white bg-opacity-60">
+      <div className="absolute bottom-0 w-full bg-white bg-opacity-60">
         <div className="grid grid-cols-2">
           {messages.length === 0 && (
             <>
