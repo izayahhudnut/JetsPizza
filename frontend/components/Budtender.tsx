@@ -40,7 +40,7 @@ export default function Budtender() {
           <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-800 to-gray-700 text-transparent bg-clip-text">
             The Greenest Budtender
           </h2>
-          <h2 className="text-xl opacity-50 mb-5">The best way to find CBD in St. Louis Missouri</h2>
+          <h2 className="text-xl text-center opacity-50 mt-2 mb-5"> Your expert guide in the world of CBD, helping you discover the perfect products tailored to your unique preferences and needs."</h2>
         <div className="grid grid-cols-4 mt-10 ">
         <div 
   className="space-y-2 p-2 mr-2 border rounded-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
@@ -210,7 +210,7 @@ export default function Budtender() {
           ))}
         </div>
       )}
-      <div className="absolute bottom-0 left-0 right-0 py-4 bg-white bg-opacity-60">
+      <div className="absolute bottom-0 w-full mb-4 bg-white bg-opacity-60">
         <div className="grid grid-cols-2">
           {messages.length === 0 && (
             <>
