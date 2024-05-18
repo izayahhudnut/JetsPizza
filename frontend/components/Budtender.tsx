@@ -40,7 +40,7 @@ export default function Budtender() {
           <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-800 to-gray-700 text-transparent bg-clip-text">
             The Greenest Budtender
           </h2>
-          <h2 className="text-xl text-center opacity-50 mt-2 mb-5"> Your expert guide in the world of CBD, helping you discover the perfect products tailored to your unique preferences and needs."</h2>
+          <h2 className="text-xl text-center opacity-50 mt-2 mb-5"> Your expert guide in the world of CBD, helping you discover the perfect products tailored to your unique preferences and needs.</h2>
         <div className="grid grid-cols-4 mt-10 ">
         <div 
   className="space-y-2 p-2 mr-2 border rounded-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
