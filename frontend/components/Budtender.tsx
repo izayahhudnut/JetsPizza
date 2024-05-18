@@ -37,9 +37,7 @@ export default function Budtender() {
     <div className="relative h-screen max-w-[50rem] mx-auto pb-10">
       {messages.length === 0 ? (
         <div className="flex flex-col items-center h-full">
-          <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-800 to-gray-700 text-transparent bg-clip-text">
-            The Greenest Budtender
-          </h2>
+          
           <h2 className="text-xl text-center opacity-50 mt-2 mb-5"> Your expert guide in the world of CBD, helping you discover the perfect products tailored to your unique preferences and needs.</h2>
         <div className="grid grid-cols-4 mt-10 ">
         <div 
