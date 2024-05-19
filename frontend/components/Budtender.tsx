@@ -231,7 +231,7 @@ export default function Budtender() {
           ))}
         </div>
       )}
-      <div className="absolute bottom-0 w-full bg-white bg-opacity-60">
+      <div className="mt-10 w-full bg-white bg-opacity-60">
         <div className="grid grid-cols-2">
           {messages.length === 0 && (
             <>
