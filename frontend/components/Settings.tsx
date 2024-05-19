@@ -50,7 +50,7 @@ export default function Settings() {
 
     return (
         <>
-        <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+        <div className="flex justify-end space-x-3 p-4 items-center max-w-[50rem] mx-auto rounded-md">
         <Link href="/" >
         <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
         <p className="text-gray-800 text-sm">Chat</p>

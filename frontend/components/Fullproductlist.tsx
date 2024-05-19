@@ -215,32 +215,9 @@ export default function FullList() {
     const dispensaries = [...new Set(data.map((product) => product.dispensary))];
 
     return (
-        <>
-        <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
-        <Link href="/" >
-        <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
-        <p className="text-gray-800 text-sm">Chat</p>
-        
-        </div>
-    </Link>
-
-    <Link href="/settings" >
-    <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
-        <p className="text-gray-800 text-sm">Customize</p>
-        
-        </div>
-    </Link>
-    <Link href="/products" >
-    <div className="flex flex-row items-center py-2 px-2 rounded-full border bg-custom-gray  border-black ">
-    <AcUnitIcon style={{fontSize: '20px', color: 'green'}} />
-
-        <p className="text-gray-800 text-sm">Browse</p>
-        
-        </div>
-    </Link>
-</div>
-        <div className="flex flex-row">
-            <div className="w-48 border-r h-[calc(100vh-64px)] space-y-10 pt-10 px-3 flex flex-col">
+       
+        <div className="flex flex-row max-w-[50rem] mx-auto">
+            <div className="w-48 border-r space-y-10 pt-10 px-3 flex flex-col">
                 <div className="flex flex-col border-b pb-5 space-y-2">
                     <p className="text-sm font-bold">Types</p>
                     {types
@@ -259,6 +236,7 @@ export default function FullList() {
                 </div>
 
                 <div className="flex flex-col border-b pb-5 space-y-2">
+                    
                     <p className="text-sm font-bold">Brands</p>
                     {brands
                         .filter((brand) => brand !== "N/A")
@@ -292,7 +270,30 @@ export default function FullList() {
                         ))}
                 </div>
             </div>
-            <div className="flex flex-col px-10 w-full">
+            <div className="flex flex-col  w-full">
+            <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+        <Link href="/" >
+        <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+        <p className="text-gray-800 text-sm">Chat</p>
+        
+        </div>
+    </Link>
+
+    <Link href="/settings" >
+    <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+        <p className="text-gray-800 text-sm">Customize</p>
+        
+        </div>
+    </Link>
+    <Link href="/products" >
+    <div className="flex flex-row items-center py-2 px-2 rounded-full border bg-custom-gray  border-black ">
+    <AcUnitIcon style={{fontSize: '20px', color: 'green'}} />
+
+        <p className="text-gray-800 text-sm">Browse</p>
+        
+        </div>
+    </Link>
+</div>
                 <div className="flex pt-8 items-center pb-3 flex row border-b w-full">
                     <h2 className="font-bold text-lg w-full">All CBD</h2>
                     <div className="flex flex-row space-x-2">
@@ -376,6 +377,6 @@ export default function FullList() {
                 )}
             </div>
         </div>
-        </>
+       
     );
 }
