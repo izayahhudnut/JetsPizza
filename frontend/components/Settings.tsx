@@ -50,7 +50,7 @@ export default function Settings() {
 
     return (
         <>
-        <div className="flex justify-end space-x-3 p-4 items-center max-w-[50rem] mx-auto rounded-md">
+        <div className="flex justify-end space-x-3 p-4  items-center max-w-[50rem] mx-auto rounded-md">
         <Link href="/" >
         <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border border-gray-400 ">
     <p className="relative left-0 right-0 text-gray-800 text-sm flex items-center justify-center">Chat</p>
@@ -79,20 +79,26 @@ export default function Settings() {
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                         Username
                     </label>
-                    <input className="bg-custom-gray appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+                    <input className="bg-custom-gray appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                         Email
                     </label>
-                    <input className="bg-custom-gray appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
+                    <input className="bg-custom-gray appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
                         Phone (Optional)
                     </label>
-                    <input className="bg-custom-gray appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="tel" placeholder="Phone Number" />
+                    <input className="bg-custom-gray appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="tel" placeholder="Phone Number" />
                 </div>
+                <div className="mb-4">
+                    <label className="block  text-sm  mb-2" htmlFor="phone">
+                        <p className="font-bold text-gray-700"> Context</p>
+                        <p className="text-sm text-gray-400"> Let us know anything that might help us better select your ideal product</p>
+                    </label>
+                    <textarea className="bg-custom-gray appearance-none border rounded-xl h-20 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="context" placeholder="What are you looking for?" />                </div>
                 <div className="mb-6">
                     <label className="inline-flex relative items-center cursor-pointer">
                         <input type="checkbox" className="sr-only peer" checked={plugMode} onChange={() => setPlugMode(!plugMode)} />

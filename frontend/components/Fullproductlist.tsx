@@ -196,7 +196,7 @@ export default function FullList() {
                 </div>
             </div>
             <div className="flex flex-col w-full">
-                <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+                <div className="flex justify-end space-x-3 p-4 sticky top-0 bg-white items-center rounded-md">
                     <Link href="/">
                         <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border border-gray-400 ">
                             <p className="relative left-0 right-0 text-gray-800 text-sm flex items-center justify-center">Chat</p>

@@ -36,7 +36,7 @@ export default function Budtender() {
 
   return (
     <div className="relative h-screen max-w-[50rem] mx-auto pb-10">
-      <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+      <div className="flex justify-end space-x-3 p-4 items-center sticky top-0 bg-white z-10 rounded-md">
         <Link href="/" >
         <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border bg-custom-gray op border-black ">
     <AcUnitIcon style={{fontSize: '20px', color: 'green'}} />
@@ -231,7 +231,7 @@ export default function Budtender() {
           ))}
         </div>
       )}
-      <div className="absolute bottom-0 w-full bg-white bg-opacity-60">
+      <div className="sticky bottom-0 w-full bg-white bg-opacity-60">
         <div className="grid grid-cols-2">
           {messages.length === 0 && (
             <>
