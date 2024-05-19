@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import Image from "next/image";
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import Link from 'next/link';
-import LocalFloristOutlinedIcon from '@mui/icons-material/LocalFloristOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+
 
 import { AI } from './action'
 

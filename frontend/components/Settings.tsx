@@ -4,6 +4,10 @@ import { useState } from 'react';
 import PowerIcon from '@mui/icons-material/Power';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import Link from 'next/link';
+
+
 
 export default function Settings() {
     const [plugMode, setPlugMode] = useState(false);
@@ -45,8 +49,32 @@ export default function Settings() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-8">
-            <h1 className="text-2xl font-semibold mb-4">Settings</h1>
+        <>
+        <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+        <Link href="/" >
+        <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+        <p className="text-gray-800 text-sm">Chat</p>
+        
+        </div>
+    </Link>
+
+    <Link href="/settings" >
+    <div className="flex flex-row items-center py-2 px-2 rounded-full border bg-custom-gray  border-black ">
+    <AcUnitIcon style={{fontSize: '20px', color: 'green'}} />
+
+        <p className="text-gray-800 text-sm">Customize</p>
+        
+        </div>
+    </Link>
+    <Link href="/products" >
+    <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+
+        <p className="text-gray-800 text-sm">Browse</p>
+        
+        </div>
+    </Link>
+</div>
+        <div className="max-w-4xl mx-auto px-8">
             <div className="bg-white rounded-lg p-6">
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
@@ -200,5 +228,6 @@ export default function Settings() {
 
             </div>
         </div>
+        </>
     );
 }

@@ -7,6 +7,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import Image from 'next/image';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import Link from 'next/link';
 
 
 
@@ -35,6 +36,28 @@ export default function Budtender() {
 
   return (
     <div className="relative h-screen max-w-[50rem] mx-auto pb-10">
+      <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+        <Link href="/" >
+        <div className="flex flex-row items-center py-2 px-2 rounded-full border bg-custom-gray op border-black ">
+        <AcUnitIcon style={{fontSize: '20px', color: 'green'}} />
+        <p className="text-gray-800 text-sm">Chat</p>
+        
+        </div>
+    </Link>
+
+    <Link href="/settings" >
+        <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+        <p className="text-gray-800 text-sm">Customize</p>
+        
+        </div>
+    </Link>
+    <Link href="/products" >
+    <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+        <p className="text-gray-800 text-sm">Browse</p>
+        
+        </div>
+    </Link>
+</div>
       {messages.length === 0 ? (
         <div className="flex flex-col items-center h-full">
           

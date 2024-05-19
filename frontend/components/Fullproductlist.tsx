@@ -3,10 +3,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect, useState } from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Image from 'next/image';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import Link from 'next/link';
+
 
 function Skeleton() {
     return (
         <>
+        
             <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
                 <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
                 <div className="flex w-full space-y-1 flex-col">
@@ -211,6 +215,30 @@ export default function FullList() {
     const dispensaries = [...new Set(data.map((product) => product.dispensary))];
 
     return (
+        <>
+        <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+        <Link href="/" >
+        <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+        <p className="text-gray-800 text-sm">Chat</p>
+        
+        </div>
+    </Link>
+
+    <Link href="/settings" >
+    <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
+        <p className="text-gray-800 text-sm">Customize</p>
+        
+        </div>
+    </Link>
+    <Link href="/products" >
+    <div className="flex flex-row items-center py-2 px-2 rounded-full border bg-custom-gray  border-black ">
+    <AcUnitIcon style={{fontSize: '20px', color: 'green'}} />
+
+        <p className="text-gray-800 text-sm">Browse</p>
+        
+        </div>
+    </Link>
+</div>
         <div className="flex flex-row">
             <div className="w-48 border-r h-[calc(100vh-64px)] space-y-10 pt-10 px-3 flex flex-col">
                 <div className="flex flex-col border-b pb-5 space-y-2">
@@ -348,5 +376,6 @@ export default function FullList() {
                 )}
             </div>
         </div>
+        </>
     );
 }
