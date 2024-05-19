@@ -1,125 +1,43 @@
 'use client'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 import { useEffect, useState } from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Image from 'next/image';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import Link from 'next/link';
 
+interface ApiData {
+    id: number;
+    product_name: string;
+    strain_type: string;
+    brand_name: string;
+    cbd: string;
+    price: string;
+    dispensary: string;
+    description: string;
+    explanation: string;
+    image: string;
+    sales: string;
+}
 
 function Skeleton() {
     return (
         <>
-        
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+            {[...Array(9)].map((_, index) => (
+                <div key={index} className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
+                    <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                    <div className="flex w-full space-y-1 flex-col">
+                        <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                        <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
+                        <div className="flex flex pt-2 row items-center space-x-5">
+                            <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                            <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
+                        </div>
                     </div>
+                    <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
                 </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-            <div className="flex flex-row border-b pt-2 pb-5 mt-5 space-x-5 px-5 items-center">
-                <div className="w-20 h-20 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                <div className="flex w-full space-y-1 flex-col">
-                    <div className="w-20 h-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-[350px] h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="flex flex pt-2 row items-center space-x-5">
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                        <div className="w-[70px] h-6 bg-gray-300 bg-opacity-50 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-[70px] h-[60px] bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-            </div>
-          
+            ))}
         </>
     );
 }
@@ -131,6 +49,9 @@ export default function FullList() {
     const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
     const [selectedDispensaries, setSelectedDispensaries] = useState<string[]>([]);
     const [showDropdown, setShowDropdown] = useState(false);
+    const [showAllTypes, setShowAllTypes] = useState(false);
+    const [showAllBrands, setShowAllBrands] = useState(false);
+    const [showAllDispensaries, setShowAllDispensaries] = useState(false);
 
     const handleSort = (sortType: string) => {
         let sortedData: ApiData[];
@@ -152,20 +73,6 @@ export default function FullList() {
         setData(sortedData);
     };
 
-    interface ApiData {
-        id: number;
-        product_name: string;
-        strain_type: string;
-        brand_name: string;
-        cbd: string;
-        price: string;
-        dispensary: string;
-        description: string;
-        explanation: string;
-        image: string;
-        sales: string;
-    }
-
     useEffect(() => {
         setLoading(true);
         const fetchData = async () => {
@@ -177,6 +84,7 @@ export default function FullList() {
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
+                setLoading(false);
             }
         };
         fetchData();
@@ -214,13 +122,14 @@ export default function FullList() {
     const brands = [...new Set(data.map((product) => product.brand_name))];
     const dispensaries = [...new Set(data.map((product) => product.dispensary))];
 
+
     return (
-       
         <div className="flex flex-row max-w-[50rem] mx-auto">
-            <div className="w-48 border-r space-y-10 pt-10 px-3 flex flex-col">
+            <div className="w-60 border-r space-y-10 pt-10 px-3 flex flex-col">
                 <div className="flex flex-col border-b pb-5 space-y-2">
                     <p className="text-sm font-bold">Types</p>
                     {types
+                        .slice(0, showAllTypes ? types.length : 5)
                         .filter((type) => type !== "N/A")
                         .map((type) => (
                             <div key={type} className="flex items-center cursor-pointer justify-between" onClick={() => handleTypeChange(type)}>
@@ -228,17 +137,22 @@ export default function FullList() {
                                     <div className={`h-3 w-3 rounded border border-gray-400 ${selectedTypes.includes(type) ? 'bg-green-700' : 'white'}`}></div>
                                     <p className="text-xs">{type}</p>
                                 </div>
-                                <div className="bg-gray-200 opacity-50 p-1 rounded">
+                                <div className="bg-gray-200 h-6 w-6 flex items-center justify-center opacity-50 p-1 rounded">
                                     <p className="text-xs">{data.filter((product) => product.strain_type === type).length}</p>
                                 </div>
                             </div>
                         ))}
+                    {types.length > 5 && (
+                        <button onClick={() => setShowAllTypes(!showAllTypes)} className="text-xs text-green-700">
+                            {showAllTypes ? 'Show Less' : 'Show More'}
+                        </button>
+                    )}
                 </div>
 
                 <div className="flex flex-col border-b pb-5 space-y-2">
-                    
                     <p className="text-sm font-bold">Brands</p>
                     {brands
+                        .slice(0, showAllBrands ? brands.length : 5)
                         .filter((brand) => brand !== "N/A")
                         .map((brand) => (
                             <div key={brand} className="flex items-center cursor-pointer justify-between" onClick={() => handleBrandChange(brand)}>
@@ -246,56 +160,63 @@ export default function FullList() {
                                     <div className={`h-3 w-3 rounded border border-gray-400 ${selectedBrands.includes(brand) ? 'bg-green-700' : 'white'}`}></div>
                                     <p className="text-xs">{brand}</p>
                                 </div>
-                                <div className="bg-gray-200 opacity-50 p-1 rounded">
+                                <div className="bg-gray-200 h-6 w-6 flex items-center justify-center opacity-50 p-1 rounded">
                                     <p className="text-xs">{data.filter((product) => product.brand_name === brand).length}</p>
                                 </div>
                             </div>
                         ))}
+                    {brands.length > 5 && (
+                        <button onClick={() => setShowAllBrands(!showAllBrands)} className="text-xs text-green-700">
+                            {showAllBrands ? 'Show Less' : 'Show More'}
+                        </button>
+                    )}
                 </div>
 
                 <div className="flex flex-col border-b pb-5 space-y-2">
                     <p className="text-sm font-bold">Dispensaries</p>
                     {dispensaries
+                        .slice(0, showAllDispensaries ? dispensaries.length : 5)
                         .filter((dispensary) => dispensary !== "N/A")
                         .map((dispensary) => (
-                            <div key={dispensary} className="flex items-center cursor-pointer justify-between" onClick={() => handleDispensaryChange(dispensary)}>
+                            <div key={dispensary} className="flex items-center cursor-pointer  justify-between" onClick={() => handleDispensaryChange(dispensary)}>
                                 <div className="flex items-center space-x-2">
                                     <div className={`h-3 w-3 rounded border border-gray-400 ${selectedDispensaries.includes(dispensary) ? 'bg-green-700' : 'white'}`}></div>
-                                    <p className="text-xs">{dispensary.length > 15 ? `${dispensary.substring(0,15)}... `: dispensary}</p>
+                                    <p className="text-xs">{dispensary.length > 15 ? `${dispensary.substring(0, 15)}...` : dispensary}</p>
                                 </div>
-                                <div className="bg-gray-200 opacity-50 p-1 rounded">
+                                <div className="bg-gray-200 h-6 w-6 flex items-center justify-center opacity-50 p-1 rounded">
                                     <p className="text-xs">{data.filter((product) => product.dispensary === dispensary).length}</p>
                                 </div>
                             </div>
                         ))}
+                    {dispensaries.length > 5 && (
+                        <button onClick={() => setShowAllDispensaries(!showAllDispensaries)} className="text-xs text-green-700">
+                            {showAllDispensaries ? 'Show Less' : 'Show More'}
+                        </button>
+                    )}
                 </div>
             </div>
-            <div className="flex flex-col  w-full">
-            <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
-        <Link href="/" >
-        <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
-        <p className="text-gray-800 text-sm">Chat</p>
-        
-        </div>
-    </Link>
+            <div className="flex flex-col w-full">
+                <div className="flex justify-end space-x-3 p-4 items-center rounded-md">
+                    <Link href="/">
+                        <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border border-gray-400 ">
+                            <p className="relative left-0 right-0 text-gray-800 text-sm flex items-center justify-center">Chat</p>
+                        </div>
+                    </Link>
 
-    <Link href="/settings" >
-    <div className="flex flex-row items-center py-2 px-2 rounded-full border border-gray-400 ">
-        <p className="text-gray-800 text-sm">Customize</p>
-        
-        </div>
-    </Link>
-    <Link href="/products" >
-    <div className="flex flex-row items-center py-2 px-2 rounded-full border bg-custom-gray  border-black ">
-    <AcUnitIcon style={{fontSize: '20px', color: 'green'}} />
-
-        <p className="text-gray-800 text-sm">Browse</p>
-        
-        </div>
-    </Link>
-</div>
+                    <Link href="/settings">
+                        <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border border-gray-400 ">
+                            <p className="text-gray-800 text-sm">Customize</p>
+                        </div>
+                    </Link>
+                    <Link href="/products">
+                        <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border bg-custom-gray op border-black ">
+                            <AcUnitIcon style={{ fontSize: '20px', color: 'green' }} />
+                            <p className="text-gray-800 text-sm">Browse</p>
+                        </div>
+                    </Link>
+                </div>
                 <div className="flex pt-8 items-center pb-3 flex row border-b w-full">
-                    <h2 className="font-bold text-lg w-full">All CBD</h2>
+                    <h2 className="font-bold text-lg w-full ml-3">All CBD</h2>
                     <div className="flex flex-row space-x-2">
                         <div className="flex flex-row space-x-2">
                             <div
@@ -377,6 +298,5 @@ export default function FullList() {
                 )}
             </div>
         </div>
-       
     );
 }
