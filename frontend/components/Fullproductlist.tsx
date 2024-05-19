@@ -125,7 +125,7 @@ export default function FullList() {
 
     return (
         <div className="flex flex-row max-w-[50rem] mx-auto">
-            <div className="w-60 border-r space-y-10 pt-10 px-3 flex flex-col">
+            <div className="w-60 border-r space-y-10 pt-10 px-3 flex flex-col sticky top-0 h-screen overflow-y-auto">
                 <div className="flex flex-col border-b pb-5 space-y-2">
                     <p className="text-sm font-bold">Types</p>
                     {types
@@ -196,7 +196,7 @@ export default function FullList() {
                 </div>
             </div>
             <div className="flex flex-col w-full">
-                <div className="flex justify-end space-x-3 p-4 sticky top-0 bg-white items-center rounded-md">
+                <div className="flex justify-end space-x-3 p-4 sticky top-0 z-10 bg-white items-center rounded-md">
                     <Link href="/">
                         <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border border-gray-400 ">
                             <p className="relative left-0 right-0 text-gray-800 text-sm flex items-center justify-center">Chat</p>

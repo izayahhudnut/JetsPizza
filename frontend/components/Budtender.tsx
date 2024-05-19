@@ -153,7 +153,7 @@ export default function Budtender() {
             <h1 className="font-bold">
             Hemp Tincture
             </h1>
-            <p className="text-gray-600 font-sm">
+            <p className="text-gray-700 text-sm">
             Lord Jones
             </p>
             <div className="flex flex-row space-x-2">
