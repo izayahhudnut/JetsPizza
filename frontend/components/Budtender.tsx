@@ -59,7 +59,7 @@ export default function Budtender() {
     </Link>
 </div>
       {messages.length === 0 ? (
-        <div className="flex flex-col items-center h-full">
+        <div className="flex flex-col items-center ">
           
           <h2 className="text-xl text-center opacity-50 mt-2 mb-5"> Your expert guide in the world of CBD, helping you discover the perfect products tailored to your unique preferences and needs.</h2>
         <div className="grid grid-cols-4 mt-10 ">
@@ -231,7 +231,7 @@ export default function Budtender() {
           ))}
         </div>
       )}
-      <div className="sticky bottom-0 w-full bg-white bg-opacity-60">
+      <div className="absolute bottom-0 w-full bg-white bg-opacity-60">
         <div className="grid grid-cols-2">
           {messages.length === 0 && (
             <>
