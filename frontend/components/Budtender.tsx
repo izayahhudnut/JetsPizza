@@ -42,196 +42,27 @@ export default function Budtender() {
     };
 
     return (
-        <div className="relative h-screen max-w-[50rem] mx-auto pb-10">
-            <div className="flex sm:justify-end  justify-center  sm:space-x-3 space-x-1 p-4 items-center sticky top-0 bg-white z-10 rounded-md">
-                <Link href="/">
-                    <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border bg-custom-gray border-black ">
-                        <AcUnitIcon
-                            style={{ fontSize: "20px", color: "green" }}
-                        />
-                        <p className="relative left-0 right-0 text-gray-800 text-sm flex items-center justify-center">
-                            Chat
-                        </p>
-                    </div>
-                </Link>
-
-                <Link href="/settings">
-                    <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center rounded-full border border-gray-400 ">
-                        <p className="text-gray-800 text-sm">Customize</p>
-                    </div>
-                </Link>
-                <Link href="/products">
-                    <div className="flex flex-row items-center py-2 px-2 w-[100px] justify-center  rounded-full border border-gray-400 ">
-                        <p className="text-gray-800 text-sm">Browse</p>
-                    </div>
-                </Link>
-            </div>
+        <div className="relative max-w-[50rem] mx-auto pb-10">
+        
 
             <div
-                className="flex flex-col justify-between h-screen "
+                className="flex flex-col justify-between  "
                 style={{ height: "calc(100vh - 6.8rem)" }}
             >
                 {messages.length === 0 ? (
-                    <div className="flex flex-col items-center  ">
-                        <h2 className="text-xl text-center opacity-50 mt-2 mb-5">
-                            {" "}
+                    <div className="flex flex-col bg-gray-200 bg-opacity-50 rounded-xl p-7">
+                        <h1 className="text-black font-bold text-3xl">
+                            The Greenest Budtender
+
+                        </h1>
+                        <h2 className="text-lg opacity-70 mt-2 mb-5">
+                            
                             Your expert guide in the world of CBD, helping you
                             discover the perfect products tailored to your
                             unique preferences and needs.
                         </h2>
 
-                        <div className="grid sm:grid-cols-4 grid-cols-2 mt-10  pl-2">
-                            <div
-                                className="space-y-2  p-2 mr-2 border rounded-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-                                onClick={() =>
-                                    window.open(
-                                        "https://thegreenest.com/reviews/green-roads-sweet-sleep-cbd-oil/",
-                                        "_blank"
-                                    )
-                                }
-                            >
-                                {" "}
-                                <div className="w-50 h-50">
-                                    <Image
-                                        src="/product1.jpeg"
-                                        width={200}
-                                        height={30}
-                                        alt="Logo"
-                                    />
-                                </div>
-                                <p className="font-bold text-gray-700">
-                                    $69.99
-                                </p>
-                                <div className="bg-green-800 bg-opacity-80 p-1 inline-block rounded-xl">
-                                    <p className="text-white text-xs">
-                                        Staff Pick
-                                    </p>
-                                </div>
-                                <h1 className="font-bold">Sweet Sleep</h1>
-                                <p className="text-gray-700 text-sm">
-                                    Green Roads
-                                </p>
-                                <div className="flex flex-row space-x-2">
-                                    <p className="text-gray-900 text-xs">
-                                        CBD: 200MG
-                                    </p>
-                                </div>
-                            </div>
-                            <div
-                                className="space-y-2 p-2 mr-2 border rounded-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-                                onClick={() =>
-                                    window.open(
-                                        "https://thegreenest.com/reviews/green-roads-cbd-relax-bears/",
-                                        "_blank"
-                                    )
-                                }
-                            >
-                                {" "}
-                                <div className="w-50 h-50">
-                                    <Image
-                                        src="/product2.webp"
-                                        width={200}
-                                        height={30}
-                                        alt="Logo"
-                                    />
-                                </div>
-                                <p className="font-bold text-gray-700">
-                                    $37.99
-                                </p>
-                                <div className="bg-green-800 bg-opacity-80 p-1 inline-block rounded-xl">
-                                    <p className="text-white text-xs">
-                                        Staff Pick
-                                    </p>
-                                </div>
-                                <h1 className="font-bold">Relax Bears</h1>
-                                <p className="text-gray-600 text-sm">
-                                    Green Roads
-                                </p>
-                                <div className="flex flex-row space-x-2">
-                                    <p className="text-gray-900 text-xs">
-                                        CBD: 300MG
-                                    </p>
-                                </div>
-                            </div>
-                            <div
-                                className="space-y-2 sm:mt-0 mt-2 p-2 mr-2 border rounded-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-                                onClick={() =>
-                                    window.open(
-                                        "https://thegreenest.com/reviews/lord-jones-hemp-derived-cbd-tincture-full-spectrum-formula/",
-                                        "_blank"
-                                    )
-                                }
-                            >
-                                {" "}
-                                <div className="w-50 h-50">
-                                    <Image
-                                        src="/product3.jpeg"
-                                        width={200}
-                                        height={30}
-                                        alt="Logo"
-                                    />
-                                </div>
-                                <p className="font-bold text-gray-700">
-                                    $12.00
-                                </p>
-                                <div className="bg-green-800 bg-opacity-80 p-1 inline-block rounded-xl">
-                                    <p className="text-white text-xs">
-                                        Staff Pick
-                                    </p>
-                                </div>
-                                <h1 className="font-bold">Hemp Tincture</h1>
-                                <p className="text-gray-700 text-sm">
-                                    Lord Jones
-                                </p>
-                                <div className="flex flex-row space-x-2">
-                                    <p className="text-gray-900 text-xs">
-                                        Hybrid
-                                    </p>
-                                    <p className="text-gray-900 text-xs">
-                                        CBD: 200MG
-                                    </p>
-                                </div>
-                            </div>
-                            <div
-                                className="space-y-2 sm:mt-0 mt-2 p-2 mr-2 border rounded-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-                                onClick={() =>
-                                    window.open(
-                                        "https://thegreenest.com/reviews/charlottes-web-cbd-gummies-sleep/",
-                                        "_blank"
-                                    )
-                                }
-                            >
-                                {" "}
-                                <div className="w-50 h-50">
-                                    <Image
-                                        src="/product4.jpeg"
-                                        width={200}
-                                        height={30}
-                                        alt="Logo"
-                                    />
-                                </div>
-                                <p className="font-bold text-gray-700">
-                                    $30.00
-                                </p>
-                                <div className="bg-green-800 bg-opacity-80 p-1 inline-block rounded-xl">
-                                    <p className="text-white text-xs">
-                                        Staff Pick
-                                    </p>
-                                </div>
-                                <h1 className="font-bold">Raspberry Gummies</h1>
-                                <p className="text-gray-700 text-sm">
-                                    Charlottes Web
-                                </p>
-                                <div className="flex flex-row space-x-2">
-                                    <p className="text-gray-900 text-xs">
-                                        Hybrid
-                                    </p>
-                                    <p className="text-gray-900 text-xs">
-                                        CBD: 10MG
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 ) : (
                     <div className="h-full overflow-y-scroll  space-y-5 pb-20 scrollbar-none">

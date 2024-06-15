@@ -1,5 +1,36 @@
 {
-  "node": {},
+  "node": {
+    "4f86b6dc67f348f876e12642bb3785e0202b704a": {
+      "workers": {
+        "app/products/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fapp%2Faction.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%2C%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fnode_modules%2Fai%2Frsc%2Fdist%2Frsc-server.mjs%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/_not-found/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fapp%2Faction.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%2C%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fnode_modules%2Fai%2Frsc%2Fdist%2Frsc-server.mjs%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/products/page": "rsc",
+        "app/_not-found/page": "rsc"
+      }
+    },
+    "fe31461de15e1db2b6b2ca0e0b14e71a1386c80b": {
+      "workers": {
+        "app/products/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fapp%2Faction.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%2C%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fnode_modules%2Fai%2Frsc%2Fdist%2Frsc-server.mjs%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/_not-found/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fapp%2Faction.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%2C%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fnode_modules%2Fai%2Frsc%2Fdist%2Frsc-server.mjs%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/products/page": "rsc",
+        "app/_not-found/page": "rsc"
+      }
+    },
+    "8060889be5ed615d60aa75286e5d962794707c56": {
+      "workers": {
+        "app/products/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fapp%2Faction.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%2C%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fnode_modules%2Fai%2Frsc%2Fdist%2Frsc-server.mjs%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/_not-found/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fapp%2Faction.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%2C%5B%22%2FUsers%2Fizayahhudnut%2FDocuments%2FBudtenders%2FGreenestBudtender2.0%2Ffrontend%2Fnode_modules%2Fai%2Frsc%2Fdist%2Frsc-server.mjs%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/products/page": "rsc",
+        "app/_not-found/page": "rsc"
+      }
+    }
+  },
   "edge": {
     "4f86b6dc67f348f876e12642bb3785e0202b704a": {
       "workers": {
@@ -26,5 +57,5 @@
       }
     }
   },
-  "encryptionKey": "bxz1YIe2XfuEuH4rdYNxxvd4UKwZcqBHoKbOaszbbnI="
+  "encryptionKey": "shI85O512GeKl1cDfDi7+HeIgGYobzEDyrpZ2qnqWC8="
 }
