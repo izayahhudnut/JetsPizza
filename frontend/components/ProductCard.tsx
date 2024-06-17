@@ -36,43 +36,38 @@ export default function ProductCard({
                 </div>
 
                 {/* Product Details */}
-                <div className="flex flex-col md:w-3/4 p-5 space-y-4">
-                    <p className="font-bold text-lg">
+                <div className="flex flex-col md:w-3/4 p-5 ">
+                    <p className="font-medium text-lg">
                         {productInfo.product_name}
                     </p>
                     <div className="flex flex-row space-x-5">
-                        <div className="flex flex-col ">
+                        <div className="flex flex-col">
                             <p>
-                                <span className="font-normal">
-                                    Strain Type:
-                                </span>{" "}
-                                <span className="font-bold">
+                                <span className="font-medium bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.fuchsia.800),theme(colors.purple.700),theme(colors.violet.600),theme(colors.indigo.500),theme(colors.violet.600),theme(colors.purple.700),theme(colors.fuchsia.800))] bg-[length:200%_auto] animate-gradient">
                                     {productInfo.strain_type}
                                 </span>
                             </p>
                             <p>
-                                <span className="font-normal">Brand:</span>{" "}
-                                <span className="font-bold">
+                                <span className="font-medium">
                                     {productInfo.brand_name}
                                 </span>
                             </p>
                             <p>
                                 <span className="font-normal">CBD:</span>{" "}
-                                <span className="font-bold">
+                                <span className="font-medium">
                                     {productInfo?.mg_content}
                                 </span>
                             </p>
                         </div>
                         <div className="flex flex-col">
                             <p>
-                                <span className="font-normal">Price:</span>{" "}
-                                <span className="font-bold">
+                                <span className="font-normal">$</span>
+                                <span className="font-medium">
                                     {productInfo.price}
                                 </span>
                             </p>
                             <p>
-                                <span className="font-normal">Dispensary:</span>{" "}
-                                <span className="font-bold">
+                                <span className="font-medium">
                                     {productInfo.dispensary}
                                 </span>
                             </p>
@@ -84,10 +79,10 @@ export default function ProductCard({
             </div>
 
             {/* Action Buttons */}
-            <div className="flex space-x-4 mt-5">
+            <div className="flex flex-wrap mt-5 md:space-x-4 space-y-4 md:space-y-0">
                 {/* Buy Product Button */}
                 <div
-                    className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer"
+                    className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer w-full md:w-auto"
                     onClick={async () => {
                         const response = await submitUserMessage(
                             `The user wants to buy this product. Call this function "check_out". Here is the Product: ${JSON.stringify(
@@ -106,7 +101,7 @@ export default function ProductCard({
 
                 {/* Recommend Another Product Button */}
                 <div
-                    className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer"
+                    className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer w-full md:w-auto"
                     onClick={async () => {
                         const response = await submitUserMessage(
                             `The user wants a recommendation for another product.`

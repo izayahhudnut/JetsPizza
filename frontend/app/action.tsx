@@ -10,6 +10,7 @@ import {
     streamUI,
 } from "ai/rsc";
 
+
 // import { OpenAI } from "openai";
 import { openai } from "@ai-sdk/openai";
 import { z } from "zod";
@@ -45,55 +46,34 @@ import { nanoid } from "@/lib/utils";
 
 function RecommendSpinner() {
     return (
-        <>
-            <div className=" flex flex-row mb-4 items-center ">
-                <div className="animate-spin">
-                    {" "}
-                    <AcUnitIcon style={{ color: "gray" }} />{" "}
+        <div className="border rounded-xl pb-4 max-w-4xl mx-auto shadow-sm">
+            <div className="flex flex-col items-center py-8">
+                <div className="flex items-center mb-4">
+                    <div className="animate-spin">
+                        <AcUnitIcon style={{ color: "gray" }} />
+                    </div>
+                    <h1 className="text-gray-600 italic ml-2">
+                        Searching STL Stores...
+                    </h1>
                 </div>
-                <h1 className="text-gray-600 italic ml-2">
-                    Searching STL Stores.....
-                </h1>
-            </div>
-            <div className="grid grid-cols-3 space-x-10">
-                <div className="flex flex-col p-x-4">
-                    <div className="w-40 h-10 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-20 h-5 mt-1 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-10 h-5 mt-2 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-10 h-5 mt-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full mt-2 h-5 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                </div>
-                <div className="flex flex-col p-x-4 ">
-                    <div className="w-40 h-10 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-20 h-5 mt-1 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-10 h-5 mt-2 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-10 h-5 mt-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full mt-2 h-5 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                </div>
-                <div className="flex flex-col p-x-4 ">
-                    <div className="w-40 h-10 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-20 h-5 mt-1 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-10 h-5 mt-2 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-10 h-5 mt-4 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full mt-2 h-5 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
-                    <div className="w-full h-3 bg-gray-300 mb-1 bg-opacity-50 rounded-xl animate-pulse"></div>
+                <div className="grid grid-cols-3 gap-4">
+                    {[...Array(3)].map((_, i) => (
+                        <div key={i} className="flex flex-col p-4">
+                            <div className="w-40 h-10 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-2"></div>
+                            <div className="w-20 h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+                            <div className="w-10 h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-2"></div>
+                            <div className="w-10 h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-4"></div>
+                            <div className="w-full h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+                        </div>
+                    ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
@@ -162,7 +142,9 @@ async function checkout(product: ProductInfo) {
     return [product];
 }
 
-async function recommendProducts(userInput: string) {
+async function recommendProducts(userInput: string, selectedEffect: string) {
+   
+      
     try {
         console.time("recommend");
         const productsResponse = await fetch(
@@ -172,9 +154,10 @@ async function recommendProducts(userInput: string) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ userInput }),
+                body: JSON.stringify({ userInput, selectedEffect }),
             }
         );
+
         console.timeEnd("recommend");
         // console.log(productsResponse, "productsResponse");
 
@@ -186,7 +169,7 @@ async function recommendProducts(userInput: string) {
         const products = await productsResponse.json();
         // console.log(products, "products");
 
-        return products;
+        return { products, selectedEffect };
 
         //         // Construct the prompt using the fetched products data
         //         const prompt = `Given the user input: "${userInput}", recommend three cbd products from the following list that match the user's preferences:
@@ -284,7 +267,6 @@ async function submitUserMessage(userInput: string) {
             },
         ],
     });
-    // console.log(aiState.get(), "aiState");
 
     let textStream:
         | ReturnType<typeof createStreamableValue<string>>
@@ -353,7 +335,7 @@ async function submitUserMessage(userInput: string) {
                                 role: "assistant",
                                 name: "start_card",
                                 content:
-                                    "provided the UI for the user to select thier effect",
+                                    "provided the UI for the user to select their effect",
                             },
                         ],
                     });
@@ -366,10 +348,11 @@ async function submitUserMessage(userInput: string) {
             },
             recommend_products: {
                 description:
-                    "Recommend three products based on user input only when they know what they want",
+                    "Recommend 5 products based on user input only when they know what they want",
                 parameters: z
                     .object({
                         userInput: z.string(),
+                        selectedEffect: z.string(),
                     })
                     .required(),
                 generate: async function* (parameters) {
@@ -379,7 +362,8 @@ async function submitUserMessage(userInput: string) {
                         </BotCard>
                     );
                     const recommendedProducts = await recommendProducts(
-                        parameters.userInput
+                        parameters.userInput,
+                        parameters.selectedEffect
                     );
 
                     const toolCallId = nanoid();
@@ -398,6 +382,7 @@ async function submitUserMessage(userInput: string) {
                                         args: {
                                             recommendedProducts,
                                             userInput,
+                                            selectedEffect: parameters.selectedEffect,
                                         },
                                     },
                                 ],
@@ -419,7 +404,8 @@ async function submitUserMessage(userInput: string) {
                     return (
                         <BotCard>
                             <RecommendedProductsList
-                                products={recommendedProducts}
+                                products={recommendedProducts.products}
+                                selectedEffect={recommendedProducts.selectedEffect}
                             />
                         </BotCard>
                     );
@@ -565,6 +551,8 @@ async function submitUserMessage(userInput: string) {
     return { id: Date.now(), display: ui.value, role: "assistant" };
 }
 
+
+
 export type AIState = {
     chatId: string;
     messages: Message[];
@@ -607,6 +595,7 @@ export const getUIStateFromAIState = (aiState: Chat) => {
                             <BotCard>
                                 <RecommendedProductsList
                                     products={tool.result}
+                                    selectedEffect={tool.result.selectedEffect}
                                 />
                             </BotCard>
                         ) : tool.toolName === "product_details" ? (

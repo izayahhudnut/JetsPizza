@@ -1,4 +1,4 @@
-// File: /Users/izayahhudnut/Documents/Budtenders/GreenestBudtender2.0/frontend/app/layout.tsx
+// File: /Users/izayahhudnut/Documents/DOR-15/Budtenders/GreenestBudtender2.0/frontend/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

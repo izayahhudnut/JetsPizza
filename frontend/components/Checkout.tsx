@@ -3,7 +3,6 @@ import { useActions, useUIState } from "ai/rsc";
 import { useState } from "react";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Image from "next/image";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 
 interface ProductInfo {
@@ -69,12 +68,10 @@ function CheckoutForm({
     };
 
     return (
-        <div className="grid grid-cols-2 space-x-5 border rounded-xl p-5">
+        <div className="grid grid-cols-2 gap-5 border rounded-xl p-5 bg-custom-gray">
             <div>
-                <h2 className="text-xl font-bold ">Checkout</h2>
-                <h1 className=" text-gray-700 mb-2">
-                    {productInfo.dispensary}
-                </h1>
+                <h2 className="text-xl font-medium">Checkout</h2>
+                <h1 className="text-gray-700 mb-2">{productInfo.dispensary}</h1>
                 {orderStatus === null && (
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
@@ -84,7 +81,7 @@ function CheckoutForm({
                             <input
                                 type="text"
                                 id="firstName"
-                                className="border border-gray-300 rounded-xl px-2 py-1 w-full outline-none"
+                                className="border border-gray-300 rounded-xl bg-opacity-50 px-2 py-1 w-full outline-none"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 required
@@ -145,7 +142,7 @@ function CheckoutForm({
                             </div>
                         </div>
                         <p className="text-lg">
-                            Please wait while we place your order...
+                            Please wait while we reserve your order...
                         </p>
                     </div>
                 )}
@@ -153,7 +150,7 @@ function CheckoutForm({
                     <div className="flex items-center">
                         <div>
                             <div className="flex flex-row items-center mb-3">
-                                <h2 className="text-2xl font-bold mr-2">
+                                <h2 className="text-2xl font-medium mr-2">
                                     Order Confirmation
                                 </h2>
                                 <div className="ml-4">
@@ -177,7 +174,7 @@ function CheckoutForm({
                     </div>
                 )}
             </div>
-            <div className="bg-custom-gray p-5 rounded-xl flex-col shadow-sm">
+            <div className="bg-white p-5 rounded-xl flex-col shadow-sm">
                 <div className="flex flex-col items-center space-y-3 border-b pb-3">
                     <img
                         src={productInfo.image}
@@ -200,7 +197,7 @@ function CheckoutForm({
                     </div>
                     {discountAmount !== "0.00" && (
                         <div className="flex flex-row space-x-7 items-center mt-2 justify-end">
-                            <p className="text-sm text-center font-bold text-gray-700">
+                            <p className="text-sm text-center font-medium text-gray-700">
                                 Promo Code ({promoCode})
                             </p>
                             <p className="text-sm">-${discountAmount}</p>
@@ -227,8 +224,8 @@ function CheckoutForm({
                         </div>
                     )}
                     <div className="border-t mt-5 pt-2 flex flex-row justify-between items-center">
-                        <p className="font-bold text-gray-600">ORDER TOTAL:</p>
-                        <p className="font-bold text-gray-600">
+                        <p className="font-medium text-gray-600">ORDER TOTAL:</p>
+                        <p className="font-medium text-gray-600">
                             ${discountedPrice}
                         </p>
                     </div>
@@ -262,16 +259,16 @@ export default function CheckoutCard({
         <>
             {!showCheckoutForm && (
                 <>
-                    <div className="flex flex row items-center  border mx-auto rounded-xl ">
+                    <div className="flex flex-row items-center border mx-auto rounded-xl">
                         <div className="flex flex-col p-5 space-y-3 w-full">
                             <p className="text-gray-500">
                                 {productInfo.brand_name}
                             </p>
-                            <p className="font-bold text-xl">
+                            <p className="font-medium text-xl">
                                 {productInfo.product_name}
                             </p>
-                            <p className="text-l text-green-800 font-bold">
-                                {productInfo.price}
+                            <p className="text-l text-green-800 font-medium">
+                                ${productInfo.price}
                             </p>
                             <div className="flex flex-row">
                                 <label
@@ -297,8 +294,8 @@ export default function CheckoutCard({
                                     className="bg-black rounded-full p-3"
                                     onClick={() => setShowCheckoutForm(true)}
                                 >
-                                    <h1 className="text-white text-sm ">
-                                        Proceed to Checkout ${totalPrice}
+                                    <h1 className="text-white text-sm">
+                                        Checkout ${totalPrice}
                                     </h1>
                                 </button>
                             </div>
@@ -309,12 +306,12 @@ export default function CheckoutCard({
                             className="w-24 h-24 object-contain rounded-xl"
                         />
                     </div>
-                    <div className="flex space-x-4 mt-5">
+                    <div className="flex flex-wrap mt-5 md:space-x-4 space-y-4 md:space-y-0">
                         <div
-                            className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer"
+                            className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer w-full md:w-auto"
                             onClick={async () => {
                                 const response = await submitUserMessage(
-                                    `The user wants to buy show more details about this product. Call this function "product_details" Here is the Product: ${JSON.stringify(
+                                    `The user wants to see more details about this product. Call this function "product_details". Here is the Product: ${JSON.stringify(
                                         productInfo
                                     )}`
                                 );
@@ -328,10 +325,10 @@ export default function CheckoutCard({
                             <p className="text-s ml-2">Show Details</p>
                         </div>
                         <div
-                            className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer"
+                            className="bg-custom-gray py-3 px-3 rounded-xl items-center inline-flex hover:bg-gray-200 hover:cursor-pointer w-full md:w-auto"
                             onClick={async () => {
                                 const response = await submitUserMessage(
-                                    `The user wants you to recommend them another product`
+                                    `The user wants you to recommend them another product.`
                                 );
                                 setMessages((currentMessages: any[]) => [
                                     ...currentMessages,

@@ -152,7 +152,7 @@ export default async function handler(
 
             const topProducts = similarities
                 .filter((product) => product.similarity !== null)
-                .slice(0, 3)
+                .slice(0, 10)
                 .map(({ embedding, ...product }) => product);
 
             cache.set(userInput, topProducts);

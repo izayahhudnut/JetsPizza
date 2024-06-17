@@ -24,6 +24,7 @@ const config = {
       },
       colors: {
         'custom-gray': '#F6F9F9',
+        'custom-black': '#141414',
         'custom-input': '#F4F4F4',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -65,6 +66,14 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
+        'gradient': {
+          to: { 'background-position': '200% center' },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -77,6 +86,10 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        'gradient': 'gradient 8s linear infinite',
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+
+
       },
     },
   },

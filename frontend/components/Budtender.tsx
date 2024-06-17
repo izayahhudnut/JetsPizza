@@ -10,6 +10,9 @@ import AcUnitIcon from "@mui/icons-material/AcUnit";
 import Link from "next/link";
 import { nanoid } from "@/lib/utils";
 import { UserMessage } from "./Messages";
+import Particles from "./magicui/particles";
+import { BorderBeam } from "./magicui/border-beam";
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export default function Budtender() {
     const [inputValue, setInputValue] = useState("");
@@ -42,59 +45,33 @@ export default function Budtender() {
     };
 
     return (
-        <div className="relative max-w-[50rem] mx-auto pb-10">
-        
-
+        <div className="relative max-w-[50rem] mx-auto pb-10 ">
             <div
-                className="flex flex-col justify-between  "
-                style={{ height: "calc(100vh - 6.8rem)" }}
+                className="flex flex-col justify-between"
+                style={{ height: "calc(100vh - 5.0rem)" }}
             >
                 {messages.length === 0 ? (
-                    <div className="flex flex-col bg-gray-200 bg-opacity-50 rounded-xl p-7">
-                        <h1 className="text-black font-bold text-3xl">
+                    <div className=" flex-col bg-custom-black rounded-xl p-7    ">
+                        <Particles
+                            className="absolute inset-0"
+                            quantity={100}
+                            ease={80}
+                            refresh
+                        />
+                        <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 text-4xl">
                             The Greenest Budtender
-
                         </h1>
-                        <h2 className="text-lg opacity-70 mt-2 mb-5">
-                            
+                        <h2 className="text-sm  text-white opacity-70 mt-2 mb-5">
                             Your expert guide in the world of CBD, helping you
                             discover the perfect products tailored to your
                             unique preferences and needs.
                         </h2>
-
-                       
                     </div>
                 ) : (
-                    <div className="h-full overflow-y-scroll  space-y-5 pb-20 scrollbar-none">
-                        {/* {messages.map((message) => (
-                        <div key={message.id} className="flex items-start px-5">
-                            <div className="rounded-xl p-1 border flex items-center justify-center mr-3  ">
-                                {message.role === "user" ? (
-                                    <div className="">
-                                        <PersonOutlineOutlinedIcon />
-                                    </div>
-                                ) : (
-                                    <div className=" text-green-800">
-                                        <GoogleIcon />
-                                    </div>
-                                )}
-                            </div>
-                            <div className="pt-1">
-                                {isLoading && message.role === "assistant" && (
-                                    <div className="animate-spin">
-                                        <AcUnitIcon style={{ color: "gray" }} />
-                                    </div>
-                                )}
-                                <div>{message.display}</div>
-                            </div>
-                        </div>
-                    ))} */}
+                    <div className="h-full overflow-y-scroll space-y-5 pb-20 scrollbar-none">
                         {messages.map((message, index) => (
                             <div key={message.id}>
                                 {message.display}
-                                {/* {index < messages.length - 1 && (
-                                <Separator className="my-4" />
-                            )} */}
                             </div>
                         ))}
                     </div>
@@ -104,28 +81,28 @@ export default function Budtender() {
                         {messages.length === 0 && (
                             <>
                                 <button
-                                    className="border py-3 mb-2 px-3 bg-custom-gray rounded-xl items-center  inline-flex hover:bg-gray-200 to-white hover:cursor-pointer shadow-sm"
+                                    className="relative bg-custom-gray py-3 mb-2 sm:ml-2 ml-0 px-3 rounded-xl items-center flex flex-row hover:cursor-pointer shadow-sm"
                                     onClick={() =>
                                         handlePromptClick(
                                             "What is the best product for me?"
                                         )
                                     }
                                 >
-                                    <AutoFixHighIcon />
-                                    <h1 className="ml-2 max-sm:text-xs">
+                                    <AutoFixHighIcon style={{ color: 'black' }} className="animate-pulse" />
+                                    <h1 className="ml-2 max-sm:text-xs text-black">
                                         What is the best product for me?
                                     </h1>
                                 </button>
                                 <button
-                                    className="border py-3 mb-2 sm:ml-2 ml-0  px-3 bg-custom-gray rounded-xl items-center inline-flex hover:bg-gray-200 to-white hover:cursor-pointer shadow-sm"
+                                    className="relative bg-custom-gray py-3 mb-2 sm:ml-2 ml-0 px-3 rounded-xl items-center flex flex-row hover:cursor-pointer shadow-sm"
                                     onClick={() =>
                                         handlePromptClick(
                                             "Show me the cheapest gummies"
                                         )
                                     }
                                 >
-                                    <AutoFixHighIcon />
-                                    <h1 className="ml-2 max-sm:text-xs">
+                                    <AutoFixHighIcon style={{ color: 'black' }} className="animate-pulse" />
+                                    <h1 className="ml-2 max-sm:text-xs text-black">
                                         Show me the cheapest gummies
                                     </h1>
                                 </button>
@@ -157,14 +134,17 @@ export default function Budtender() {
                             setInputValue("");
                         }}
                     >
+                    <div className="relative">
                         <input
-                            className="bg-custom-gray w-full rounded-2xl py-5 px-5 outline-none"
-                            placeholder="Send a message..."
-                            value={inputValue}
-                            onChange={(event) => {
-                                setInputValue(event.target.value);
-                            }}
-                        />
+                        className="bg-white w-full border border-black py-5 px-5 outline-none text-black rounded-xl " 
+                        placeholder="Send a message..."
+                        value={inputValue}
+                        onChange={(event) => {
+                            setInputValue(event.target.value);
+                        }}
+                    />
+                    <KeyboardVoiceIcon style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} className="opacity-70"/>
+</div>
                     </form>
                 </div>
             </div>
