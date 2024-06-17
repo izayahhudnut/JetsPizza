@@ -20,11 +20,11 @@ export const BotMessage = ({
     return (
         <div className={cn("group relative flex items-start", className)}>
             <div className="rounded-xl p-1 border flex items-center justify-center ">
-                <div className=" text-green-800 ">
+                <div className=" text-green-800  ">
                     <GoogleIcon />
                 </div>
             </div>
-            <div className=" flex-1 space-y-2 overflow-hidden px-1">
+            <div className=" flex-1 space-y-2 overflow-hidden px-1 ml-2">
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
