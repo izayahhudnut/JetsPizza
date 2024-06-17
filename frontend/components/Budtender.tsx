@@ -12,7 +12,6 @@ import { nanoid } from "@/lib/utils";
 import { UserMessage } from "./Messages";
 import Particles from "./magicui/particles";
 import { BorderBeam } from "./magicui/border-beam";
-import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export default function Budtender() {
     const [inputValue, setInputValue] = useState("");
@@ -20,8 +19,7 @@ export default function Budtender() {
     // const aiState = useAIState<typeof AI>();
     const { submitUserMessage } = useActions<typeof AI>();
     const [isLoading, setIsLoading] = useState(false);
-    const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
-    const [isListening, setIsListening] = useState(false);
+
 
     // const uiState: UIState = getUIStateFromAIState();
 
@@ -46,21 +44,7 @@ export default function Budtender() {
         setIsLoading(false);
     };
 
-    useEffect(() => {
-        const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            const recognitionInstance = new SpeechRecognition();
-            recognitionInstance.interimResults = true;
-            recognitionInstance.onresult = (event: SpeechRecognitionEvent) => {
-                const transcript = Array.from(event.results)
-                    .map(result => result[0])
-                    .map(result => result.transcript)
-                    .join('');
-                setInputValue(transcript);
-            };
-            setRecognition(recognitionInstance);
-        }
-    }, []);
+    
 
     return (
         <div className="relative max-w-[50rem] mx-auto  ">
@@ -161,27 +145,7 @@ export default function Budtender() {
                             setInputValue(event.target.value);
                         }}
                     />
-                    <KeyboardVoiceIcon 
-                        style={{ 
-                            position: 'absolute', 
-                            right: '20px', 
-                            top: '50%', 
-                            transform: 'translateY(-50%)', 
-                            color: isListening ? 'red' : 'inherit' 
-                        }} 
-                        className="opacity-70 cursor-pointer"
-                        onClick={() => {
-                            if (recognition) {
-                                if (isListening) {
-                                    recognition.stop();
-                                    setIsListening(false);
-                                } else {
-                                    recognition.start();
-                                    setIsListening(true);
-                                }
-                            }
-                        }}
-                    />
+                    
                     </div>
                     </form>
                 </div>
