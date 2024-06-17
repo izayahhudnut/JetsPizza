@@ -51,7 +51,7 @@ export default function Budtender() {
                 style={{ height: "calc(100vh - 5.0rem)" }}
             >
                 {messages.length === 0 ? (
-                    <div className=" flex-col bg-custom-black rounded-xl p-7    ">
+                    <div className=" flex flex-col bg-custom-black rounded-xl p-7  mx-3">
                         <Particles
                             className="absolute inset-0"
                             quantity={100}
