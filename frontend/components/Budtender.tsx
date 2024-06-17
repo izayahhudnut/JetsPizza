@@ -45,7 +45,7 @@ export default function Budtender() {
     };
 
     return (
-        <div className="relative max-w-[50rem] mx-auto pb-10 ">
+        <div className="relative max-w-[50rem] mx-auto  ">
             <div
                 className="flex flex-col justify-between"
                 style={{ height: "calc(100vh - 5.0rem)" }}
@@ -68,7 +68,7 @@ export default function Budtender() {
                         </h2>
                     </div>
                 ) : (
-                    <div className="h-full overflow-y-scroll space-y-5 pb-20 scrollbar-none">
+                    <div className="h-full overflow-y-scroll space-y-5 pb-20 scrollbar-none ">
                         {messages.map((message, index) => (
                             <div key={message.id}>
                                 {message.display}
@@ -136,7 +136,7 @@ export default function Budtender() {
                     >
                     <div className="relative">
                         <input
-                        className="bg-white w-full border border-black py-5 px-5 outline-none text-black rounded-xl " 
+                        className="bg-white w-full border border-black py-3 px-5 outline-none text-black rounded-xl " 
                         placeholder="Send a message..."
                         value={inputValue}
                         onChange={(event) => {
