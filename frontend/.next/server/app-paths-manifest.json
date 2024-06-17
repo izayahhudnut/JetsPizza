@@ -1,3 +1,4 @@
 {
-  "/page": "app/page.js"
+  "/page": "static/webpack/app/page.ee433cae03d036de.hot-update.js",
+  "/products/page": "app/products/page.js"
 }
