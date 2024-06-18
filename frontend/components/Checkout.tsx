@@ -5,16 +5,18 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 
-interface ProductInfo {
+type ProductInfo = {
     product_name: string;
-    dispensary: string;
-    mg_content?: string;
-    price: string;
     strain_type: string;
     brand_name: string;
+    cbd?: string;  // Make cbd optional
+    price: string;
+    dispensary: string;
     description: string;
+    explanation: string;
     image: string;
-}
+};
+
 
 function CheckoutForm({
     productInfo,
@@ -68,7 +70,7 @@ function CheckoutForm({
     };
 
     return (
-        <div className="grid grid-cols-2 gap-5 border rounded-xl p-5 bg-custom-gray">
+        <div className="flex flex-col gap-5 lg:grid grid-cols-2 xl:grid grid-cols-2w md:grid grid-cols-2 border rounded-xl p-5 bg-custom-gray">
             <div>
                 <h2 className="text-xl font-medium">Checkout</h2>
                 <h1 className="text-gray-700 mb-2">{productInfo.dispensary}</h1>
@@ -291,7 +293,7 @@ export default function CheckoutCard({
                                     ))}
                                 </select>
                                 <button
-                                    className="bg-black rounded-full p-3"
+                                    className="bg-black rounded-full p-2"
                                     onClick={() => setShowCheckoutForm(true)}
                                 >
                                     <h1 className="text-white text-sm">
@@ -303,7 +305,7 @@ export default function CheckoutCard({
                         <img
                             src={productInfo.image}
                             alt={`${productInfo.image}`}
-                            className="w-24 h-24 object-contain rounded-xl"
+                            className="w-[10rem] h-[10rem] object-contain rounded-xl "
                         />
                     </div>
                     <div className="flex flex-wrap mt-5 md:space-x-4 space-y-4 md:space-y-0">

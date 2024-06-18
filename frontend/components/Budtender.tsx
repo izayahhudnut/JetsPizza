@@ -47,7 +47,7 @@ export default function Budtender() {
     
 
     return (
-        <div className="relative max-w-[50rem] mx-auto  ">
+        <div className="relative max-w-[50rem] mx-auto">
             <div
                 className="flex flex-col justify-between"
                 style={{ height: "calc(100vh - 5.0rem)" }}

@@ -4,16 +4,18 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Image from "next/image";
 
-interface ProductInfo {
+type ProductInfo = {
     product_name: string;
-    dispensary: string;
-    mg_content?: string;
-    price: string;
     strain_type: string;
     brand_name: string;
+    cbd?: string;  // Make cbd optional
+    price: string;
+    dispensary: string;
     description: string;
+    explanation: string;
     image: string;
-}
+};
+
 
 export default function ProductCard({
     productInfo,
@@ -25,13 +27,13 @@ export default function ProductCard({
 
     return (
         <>
-            <div className="flex flex-row w-full border mx-auto rounded-xl">
+            <div className="flex flex-col md:flex-row items-center lg:flex-row xl:flex-row w-full border mx-auto rounded-xl">
                 {/* Product Image */}
-                <div className="p-5 md:w-1/4 flex items-center justify-center">
+                <div className="p-5  w-1/2 flex items-center justify-center">
                     <img
                         src={productInfo.image}
                         alt={`${productInfo.image}`}
-                        className="w-[130px] h-[130px] object-contain rounded-xl"
+                        className="w-[20rem] h-[10rem] object-contain rounded-xl"
                     />
                 </div>
 
@@ -55,7 +57,7 @@ export default function ProductCard({
                             <p>
                                 <span className="font-normal">CBD:</span>{" "}
                                 <span className="font-medium">
-                                    {productInfo?.mg_content}
+                                    {productInfo.cbd}
                                 </span>
                             </p>
                         </div>

@@ -4,6 +4,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
+
 interface ProductInfo {
     product_name: string;
     dispensary: string;
@@ -11,6 +12,7 @@ interface ProductInfo {
     price: string;
     explanation: string;
     image: string;
+    cbd: string;
 }
 
 interface RecommendedProductsListProps {
@@ -44,6 +46,7 @@ export function RecommendedProductsList({
     const handleLoadMore = () => {
         setProductLimit((prevLimit) => prevLimit + 5); // Increase limit by 5
     };
+
 
     return (
         <div className="border rounded-xl pb-4 max-w-4xl mx-auto shadow-sm">
@@ -87,6 +90,7 @@ export function RecommendedProductsList({
                         <p className="text-xs text-gray-500 mt-1">
                             {product.explanation}
                         </p>
+                        
                     </div>
                 </div>
             ))}
@@ -98,7 +102,9 @@ export function RecommendedProductsList({
                     >
                         Load More
                     </button>
+                    
                 </div>
+                
             )}
         </div>
     );

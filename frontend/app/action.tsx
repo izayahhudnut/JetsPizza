@@ -16,6 +16,7 @@ import { openai } from "@ai-sdk/openai";
 import { z } from "zod";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import StartCard from "@/components/StartCard";
 import { RecommendedProductsList } from "@/components/RecommendList";
 import ProductCard from "@/components/ProductCard";
@@ -45,10 +46,12 @@ import { nanoid } from "@/lib/utils";
 // };
 
 function RecommendSpinner() {
+    const skeletonArray = [1, 2, 3]; // Adjust the number of skeletons as needed
+
     return (
         <div className="border rounded-xl pb-4 max-w-4xl mx-auto shadow-sm">
-            <div className="flex flex-col items-center py-8">
-                <div className="flex items-center mb-4">
+        {/* Title and Subtext */}
+        <div className="flex items-center justify-center py-5">
                     <div className="animate-spin">
                         <AcUnitIcon style={{ color: "gray" }} />
                     </div>
@@ -56,24 +59,32 @@ function RecommendSpinner() {
                         Searching STL Stores...
                     </h1>
                 </div>
-                <div className="grid grid-cols-3 gap-4">
-                    {[...Array(3)].map((_, i) => (
-                        <div key={i} className="flex flex-col p-4">
-                            <div className="w-40 h-10 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-2"></div>
-                            <div className="w-20 h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
-                            <div className="w-10 h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-2"></div>
-                            <div className="w-10 h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-4"></div>
-                            <div className="w-full h-5 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
-                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
-                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
-                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
-                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
-                            <div className="w-full h-3 bg-gray-300 bg-opacity-50 rounded-xl animate-pulse mb-1"></div>
+        {skeletonArray.map((item, index) => (
+            <div
+                key={index}
+                className="flex flex-row items-center  rounded-xl p-2 mb-2 mx-4 animate-pulse"
+            >
+                {/* Product Image */}
+                <div className="flex-shrink-0">
+                    <div className="w-16 h-16 bg-gray-300 rounded-xl"></div>
+                </div>
+
+                {/* Product Info */}
+                <div className="flex-grow ml-4">
+                    <div className="flex flex-row items-center justify-between">
+                        <div>
+                            <div className="h-4 bg-gray-300 rounded w-[15rem] mb-2"></div>
+                            <div className="h-4 bg-gray-300 rounded w-[9rem] mb-2"></div>
+                            <div className="h-4 bg-gray-300 rounded w-12"></div>
                         </div>
-                    ))}
+                        <InfoOutlinedIcon style={{ color: "gray" }} />
+                    </div>
                 </div>
             </div>
+        ))}
+        <div className="text-center mt-4">
         </div>
+    </div>
     );
 }
 
@@ -130,7 +141,7 @@ type ProductInfo = {
     product_name: string;
     strain_type: string;
     brand_name: string;
-    mg_content?: string;
+    cbd?: string;  
     price: string;
     dispensary: string;
     description: string;
@@ -148,7 +159,7 @@ async function recommendProducts(userInput: string, selectedEffect: string) {
     try {
         console.time("recommend");
         const productsResponse = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/recommed-products`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/recommend-products`,
             {
                 method: "POST",
                 headers: {
@@ -348,7 +359,7 @@ async function submitUserMessage(userInput: string) {
             },
             recommend_products: {
                 description:
-                    "Recommend 5 products based on user input only when they know what they want",
+                    "Recommend products based on user input only when they know what they want",
                 parameters: z
                     .object({
                         userInput: z.string(),
@@ -420,7 +431,7 @@ async function submitUserMessage(userInput: string) {
                             product_name: z.string(),
                             strain_type: z.string(),
                             brand_name: z.string(),
-                            mg_content: z.string().optional(),
+                            cbd: z.string().optional(),
                             price: z.string(),
                             dispensary: z.string(),
                             description: z.string(),
@@ -483,7 +494,7 @@ async function submitUserMessage(userInput: string) {
                             product_name: z.string(),
                             strain_type: z.string(),
                             brand_name: z.string(),
-                            mg_content: z.string().optional(),
+                            cbd: z.string().optional(),
                             price: z.string(),
                             dispensary: z.string(),
                             description: z.string(),
