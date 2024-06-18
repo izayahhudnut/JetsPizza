@@ -56,7 +56,7 @@ export default function Budtender() {
                     <div className=" flex flex-col bg-custom-black rounded-xl p-7  mx-3">
                         <Particles
                             className="absolute inset-0"
-                            quantity={100}
+                            quantity={600}
                             ease={80}
                             refresh
                         />
