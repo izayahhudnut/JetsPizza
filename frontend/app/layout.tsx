@@ -8,8 +8,8 @@ import { AI } from './action'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "The Greenest",
-  description: "Health, wellness, mindfulness and a little fun.",
+  title: "JetsPizza",
+  description: "A assistant to help with data",
 };
 
 export default function RootLayout({
