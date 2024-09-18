@@ -7,6 +7,8 @@ import remarkGfm from "remark-gfm";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 import { spinner } from "./Spinner";
+import { InlineMath, BlockMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 export const BotMessage = ({
     content,
@@ -19,30 +21,25 @@ export const BotMessage = ({
 
     return (
         <div className={cn("group relative flex items-start", className)}>
-            <div className="rounded-xl p-1 border flex items-center justify-center ">
-                <div className=" text-green-800  ">
+            <div className="rounded-xl p-1 border flex items-center justify-center">
+                <div className="text-green-800">
                     <LocalPizzaIcon />
                 </div>
             </div>
-            <div className=" flex-1 space-y-2 overflow-hidden px-1 ml-2">
+            <div className="flex-1 space-y-2 overflow-hidden px-1 ml-2">
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                        strong: ({ node, ...props }) => (
-                            <strong className="font-bold" {...props} />
-                        ),
-                        ul: ({ node, ...props }) => (
-                            <ul className="list-disc ml-4 mt-4" {...props} />
-                        ),
-                        ol: ({ node, ...props }) => (
-                            <ol className="list-decimal ml-4 mt-4" {...props} />
-                        ),
-                        li: ({ node, ...props }) => (
-                            <li className="mb-2" {...props} />
-                        ),
-                        img: ({ node, ...props }) => (
-                            <img className="max-w-[10rem] h-auto" {...props} />
-                        ),
+                        p: ({ node, ...props }) => {
+                            // Detect LaTeX content in the message
+                            const latexMatch = /\[\\text\{(.+)\}\]/.exec(text);
+                            if (latexMatch) {
+                                return (
+                                    <BlockMath>{latexMatch[1]}</BlockMath>
+                                );
+                            }
+                            return <p {...props} />;
+                        },
                     }}
                 >
                     {text}

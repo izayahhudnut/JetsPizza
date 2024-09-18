@@ -29,7 +29,11 @@ import ProfitMarginDisplay from "@/components/ProfitMarginDisplay";
 import ExpenseManagementDisplay from "@/components/ExpenseManagementDisplay";
 import MarketShareDisplay from "@/components/MarketShareDisplay"; 
 import COGSProjectionDisplay from "@/components/COGSProjectionDisplay"; 
-import ExpenseBreakdownDisplay from "@/components/ExpenseBreakdownDisplay"; // Import ExpenseBreakdownDisplay
+import ExpenseBreakdownDisplay from "@/components/ExpenseBreakdownDisplay"; // 
+import MarketingPromotionsDisplay from "@/components/MarketingPromotionsDisplay";
+import HistoricalStaffingDisplay from "@/components/HistoricalStaffingDisplay";
+import GeneralOperations from "@/components/GeneralOperations";
+
 
 // Import specific spinners
 import SalesDataSpinner from "@/components/SalesDataSpinner";
@@ -40,6 +44,10 @@ import InventorySpinner from "@/components/InventorySpinner";
 import MarketShareSpinner from "@/components/MarketShareSpinner";
 import COGSProjectionSpinner from "@/components/COGSProjectionSpinner";
 import ExpenseBreakdownSpinner from "@/components/ExpenseBreakdownSpinner";
+import MarketingPromotionsSpinner from "@/components/MarketingPromotionsSpinner";
+import StaffingSpinner from "@/components/StaffingSpinner"; 
+import { GeneralOperationsSpinner } from "@/components/GeneralOperationsSpinner";
+
 
 // Define the InventoryData interface
 interface InventoryData {
@@ -113,9 +121,44 @@ async function submitUserMessage(userInput: string) {
   const ui = await streamUI({
     model: openai("gpt-4o"),
     initial: <SpinnerMessage />,
-    system: `You are a highly knowledgeable and efficient QSR Management Assistant with specific expertise in Jet's Pizza operations. Your role is to assist the General Manager in managing restaurant operations by providing insights and recommendations related to profit margins, inflation impact, expense management, market share analysis, COGS projections, and profitability.
+    system: `You are a highly knowledgeable and efficient QSR Management Assistant with specific expertise in Jet's Pizza operations. Your role is to assist the General Manager in managing restaurant operations by providing insights and recommendations related to profit margins, inflation impact, expense management, market share analysis, and profitability. If the user asks a question about the current Sales give them the number immideatly. If they asks to compare it to last year give reasons for why the numbers has changed.  
 
-Always provide actionable advice based on the provided data, delivering precise numerical responses without rounding values. When exact data is unavailable, use logical estimates or averages from the provided ranges to deliver a plausible response.
+Always provide actionable advice based on the provided data, delivering precise numerical responses without rounding values. When exact data is unavailable, use logical estimates or averages from the provided ranges to deliver a plausible response. Assume all of the data given to you is accurate
+
+ When providing numerical calculations or comparisons, avoid using LaTeX-style or any complex math formatting like [ \text{ ... } ]. Instead, present numbers and equations in plain text with simple formatting for easy readability.
+
+**Jet's Pizza Financial and Operational Data:**
+- **Annual Sales (Last Year):** $1,520,422.78
+- **Weekly Sales:** Ranges from $25,764.92 to $45,987.63 depending on promotions and events. Based on this number you can assume a lot about the current sales and how it compares to last year. Lets say this month it is at $25,764.92 and it is September. You are able to compare current sales to last year's sales, identify factors impacting sales differences, external factors and data while also analyze weekly and annual sales data. .
+
+### Available Metrics:
+- **Annual Sales (Last Year):** $1,520,422.78
+- **Weekly Sales:** Ranges from $25,764.92 to $45,987.63 depending on promotions and events.
+- **Foot Traffic Increase During Promotions:** 15% (last month)
+- **Additional Revenue from Promotions:** $18,765 (last month)
+- **Time of Year Impact:** Back to School, Holidays
+- **Other Factors Impacting Sales:** Weather, Local Events, School Schedules.
+
+Provide analysis that compares the current year's sales and highlights key differences from last year. Identify these differences and how factors like time of year and promotions influenced them. Always analyze weekly and annual sales data to provide actionable insights and recommendations. Also try to have definitive answers
+
+### Promotion Data:
+- **Promotion Cost (Last Month):** $12,000
+- **Foot Traffic Increase (Last Month):** 15%
+- **Average Order Value:** $18.50
+- **Conversion Rate (Foot Traffic to Sales):** 30%
+- **Promotion-Driven Revenue (Last Month):** $18,765
+- **Break-Even Traffic Increase Needed:** Calculate using promotional cost and average order value.
+  
+Use this data to answer questions about **Promotion Planning**:
+1. Calculate the additional traffic needed to break even on promotions.
+2. Evaluate the success of marketing promotions last month and last quarter.
+3. Compare current promotion performance with historical data.
+
+### Staffing Data:
+- **Average Weekly Hours (Last 6 Weeks):** 400.42 hours
+- **Predicted Staffing Increase for Next Week:** 15.5% due to promotions and events
+- **Forecast for Next Week:** 462.48 hours
+
 `,
 
     messages: [
@@ -152,57 +195,6 @@ Always provide actionable advice based on the provided data, delivering precise 
     },
 
     tools: {
-      sales_analysis: {
-        description:
-          "Provides sales analysis comparing current sales to last year's sales, including projections.",
-        parameters: z.object({}).required(),
-        generate: async function* () {
-          yield (
-            <BotCard>
-              <SalesDataSpinner />
-            </BotCard>
-          );
-
-          const toolCallId = nanoid();
-
-          aiState.done({
-            ...aiState.get(),
-            messages: [
-              ...aiState.get().messages,
-              {
-                id: nanoid(),
-                role: "assistant",
-                content: [
-                  {
-                    type: "tool-call",
-                    toolName: "sales_analysis",
-                    toolCallId,
-                    args: {},
-                  },
-                ],
-              },
-              {
-                id: nanoid(),
-                role: "tool",
-                content: [
-                  {
-                    type: "tool-result",
-                    toolName: "sales_analysis",
-                    toolCallId,
-                    result: null,
-                  },
-                ],
-              },
-            ],
-          });
-
-          return (
-            <BotCard>
-              <SalesAnalysisDisplay />
-            </BotCard>
-          );
-        },
-      },
       cost_analysis: {
         description:
           "Provides insights on COGS over the past few years, including inflation impact.",
@@ -305,6 +297,58 @@ Always provide actionable advice based on the provided data, delivering precise 
           );
         },
       },
+      general_operations: {
+        description:
+          "Provides recommendations for improving sales, reducing costs, and optimizing staff scheduling based on external and internal data. Use this when the user asks about general business improvements. ALso use when the user asks to forecast sales",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <GeneralOperationsSpinner />
+            </BotCard>
+          );
+      
+          const toolCallId = nanoid();
+      
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "general_operations",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "general_operations",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+      
+          return (
+            <BotCard>
+              <GeneralOperations />
+            </BotCard>
+          );
+        },
+      },
+      
       expense_management: {
         description:
           "Shows expenses for this year and the previous 3 years",
@@ -509,6 +553,111 @@ Always provide actionable advice based on the provided data, delivering precise 
           );
         },
       },
+      marketing_promotions: {
+        description:
+          "Shows marketing promotion performance over the last 3 years, comparing costs, traffic increase, and revenue. Only use this tool when the user asks about promotions older than one month. So last quarter, 6 months, year, etc",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <MarketingPromotionsSpinner />
+            </BotCard>
+          );
+      
+          const toolCallId = nanoid();
+      
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "marketing_promotions",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "marketing_promotions",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+      
+          return (
+            <BotCard>
+              <MarketingPromotionsDisplay />
+            </BotCard>
+          );
+        },
+      },
+
+      staffing_insights: {
+        description:
+          "Displays historical staffing data and provides insights into long-term staffing trends. Only use this when the user asks for staffing data over a long period, or historical staffing requests.",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <StaffingSpinner />
+            </BotCard>
+          );
+      
+          const toolCallId = nanoid();
+      
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "staffing_insights",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "staffing_insights",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+      
+          return (
+            <BotCard>
+              <HistoricalStaffingDisplay />
+            </BotCard>
+          );
+        },
+      },
+      
+      
       expense_breakdown: {
         description:
           "Breaks down all expenses and allows for adjusting individual expenses to see how they affect the overall business. Call this when the user wants to play out a scenerio like what if i fired 10 people or what if i stoped spending money on marketing",
@@ -647,6 +796,18 @@ export const getUIStateFromAIState = (aiState: Chat) => {
                 return (
                   <BotCard key={tool.toolCallId}>
                     <ExpenseBreakdownDisplay />
+                  </BotCard>
+                );
+              case "marketing_promotions":
+                return (
+                  <BotCard key={tool.toolCallId}>
+                    <MarketingPromotionsDisplay />
+                  </BotCard>
+                );
+              case "general_operations": // Add this case
+                return (
+                  <BotCard key={tool.toolCallId}>
+                    <GeneralOperations />
                   </BotCard>
                 );
               default:

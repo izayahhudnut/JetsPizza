@@ -14,10 +14,10 @@ import {
 const MarketShareDisplay: React.FC = () => {
   // Initial market share data
   const initialData = [
-    { name: "Jet's Pizza", revenue: 500000 },
-    { name: "Mod Pizza", revenue: 600000 },
-    { name: "Pizza Hut", revenue: 400000 },
-    { name: "Domino's", revenue: 500000 },
+    { name: "Jet's Pizza", revenue: 1520422.78 },
+    { name: "Mod Pizza", revenue: 1824507.34 },
+    { name: "Pizza Hut", revenue: 1216338.22 },
+    { name: "Domino's", revenue: 1520422.78 },
   ];
 
   const totalMarketRevenue = initialData.reduce(
@@ -64,6 +64,8 @@ const MarketShareDisplay: React.FC = () => {
 
     setMarketShareData(newMarketShareData);
   };
+
+  // ... rest of the component remains the same
 
   // Recommendations based on revenue changes
   const recommendations = [

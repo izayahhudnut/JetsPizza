@@ -15,8 +15,8 @@ export default function Navbar () {
             <Link href="https://www.jetspizza.com/">
                 <Image
                     src={"/logo.png"}
-                    height={100}
-                    width={100}
+                    height={175}
+                    width={175}
                     alt='logo'
                 />
             </Link>

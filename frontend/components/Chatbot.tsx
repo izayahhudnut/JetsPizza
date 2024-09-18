@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useUIState, useActions, useAIState } from "ai/rsc";
-import { AI, getUIStateFromAIState, UIState } from "@/app/action";
+import { useState } from "react";
+import { useUIState, useActions } from "ai/rsc";
+import { AI } from "@/app/action";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import MicIcon from "@mui/icons-material/Mic";
 import { nanoid } from "@/lib/utils";
 import { UserMessage } from "./Messages";
 import Dashboard from "@/components/Dashboard"; // Import Dashboard
@@ -12,6 +13,49 @@ export default function Chatbot() {
     const [messages, setMessages] = useUIState<typeof AI>();
     const { submitUserMessage } = useActions<typeof AI>();
     const [isLoading, setIsLoading] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+
+    // Speech recognition logic with improved handling
+    const startSpeechRecognition = () => {
+        const SpeechRecognition =
+            window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            console.error("Speech recognition not supported in this browser.");
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = () => {
+            setIsRecording(true);
+            console.log("Speech recognition started...");
+        };
+
+        recognition.onresult = (event: any) => {
+            const transcript = event.results[0][0].transcript;
+            console.log("Transcription result: ", transcript);
+            setInputValue(transcript);
+            setIsRecording(false);
+            // Automatically submit the message after transcription
+            handleSubmitMessage(transcript);
+        };
+
+        recognition.onerror = (event: any) => {
+            console.error("Speech recognition error: ", event.error);
+            setIsRecording(false);
+        };
+
+        recognition.onend = () => {
+            setIsRecording(false);
+            console.log("Speech recognition ended.");
+        };
+
+        // Start the recognition process
+        recognition.start();
+    };
 
     const handlePromptClick = async (promptText: string) => {
         setIsLoading(true);
@@ -34,11 +78,30 @@ export default function Chatbot() {
         setIsLoading(false);
     };
 
+    const handleSubmitMessage = async (message: string) => {
+        const id = nanoid();
+        setMessages((currentMessages) => [
+            ...currentMessages,
+            {
+                id,
+                display: <UserMessage>{message}</UserMessage>,
+                role: "user",
+            },
+        ]);
+
+        const responseMessage = await submitUserMessage(message);
+        setMessages((currentMessages) => [
+            ...currentMessages,
+            { ...responseMessage, role: "assistant" },
+        ]);
+        setInputValue("");
+    };
+
     return (
         <div className="relative max-w-[50rem] mx-auto">
             <div
                 className="flex flex-col justify-between"
-                style={{ height: "calc(100vh - 5.0rem)" }}
+                style={{ height: "calc(96vh - 5.0rem)" }}
             >
                 {messages.length === 0 ? (
                     <>
@@ -97,39 +160,26 @@ export default function Chatbot() {
                     <form
                         onSubmit={async (e) => {
                             e.preventDefault();
-                            const id = nanoid();
-                            setMessages((currentMessages) => [
-                                ...currentMessages,
-                                {
-                                    id,
-                                    display: (
-                                        <UserMessage>{inputValue}</UserMessage>
-                                    ),
-                                    role: "user",
-                                },
-                            ]);
-
-                            const responseMessage = await submitUserMessage(
-                                inputValue
-                            );
-                            setMessages((currentMessages) => [
-                                ...currentMessages,
-                                { ...responseMessage, role: "assistant" },
-                            ]);
-                            setInputValue("");
+                            handleSubmitMessage(inputValue);
                         }}
                     >
-                    <div className="relative">
-                        <input
-                        className="bg-white w-full border border-black py-3 px-5 outline-none text-black rounded-xl " 
-                        placeholder="Send a message..."
-                        value={inputValue}
-                        onChange={(event) => {
-                            setInputValue(event.target.value);
-                        }}
-                    />
-                    
-                    </div>
+                        <div className="relative flex items-center">
+                            <input
+                                className="bg-white w-full border border-black py-3 px-5 outline-none text-black rounded-xl "
+                                placeholder="Send a message..."
+                                value={inputValue}
+                                onChange={(event) => {
+                                    setInputValue(event.target.value);
+                                }}
+                            />
+                            <button
+                                type="button"
+                                className={`ml-2 p-2 rounded-full ${isRecording ? "bg-red-500" : "bg-gray-300"}`}
+                                onClick={startSpeechRecognition}
+                            >
+                                <MicIcon style={{ color: isRecording ? "white" : "black" }} />
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

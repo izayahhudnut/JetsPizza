@@ -18,13 +18,13 @@ import {
 const SalesAnalysisDisplay: React.FC = () => {
   // Initial financial data
   const initialData = {
-    years: [2020, 2021, 2022],
-    revenue: [500000, 550000, 600000],
-    cogs: [200000, 220000, 240000],
-    expenses: [150000, 160000, 170000],
-    staffingCosts: [80000, 85000, 90000],
-    inventoryCosts: [120000, 130000, 140000],
-    numberOfStaff: [60, 72, 104], // Added number of staff data
+    years: [2021, 2022, 2023],
+    revenue: [550000, 600000, 1520422.78],
+    cogs: [220000, 240000, 608169.11], // 40% of revenue
+    expenses: [160000, 170000, 430119.79], // ~28.29% of revenue
+    staffingCosts: [85000, 90000, 227963.42], // 15% of revenue
+    inventoryCosts: [130000, 140000, 354765.32], // ~23.33% of revenue
+    numberOfStaff: [72, 104, 263], // Scaled proportionally to revenue increase
   };
 
   // State for projected sales increase percentage
