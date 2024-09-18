@@ -1,3 +1,5 @@
+// action.tsx
+
 import "server-only";
 
 import {
@@ -25,8 +27,8 @@ import InventoryDisplay from "@/components/InventoryDisplay";
 import CostAnalysisDisplay from "@/components/CostAnalysisDisplay";
 import ProfitMarginDisplay from "@/components/ProfitMarginDisplay";
 import ExpenseManagementDisplay from "@/components/ExpenseManagementDisplay";
-import MarketShareDisplay from "@/components/MarketShareDisplay";
-import ExpenseBreakdownDisplay from "@/components/ExpenseBreakdownDisplay"; // Import ExpenseBreakdownDisplay
+import MarketShareDisplay from "@/components/MarketShareDisplay"; // Import MarketShareDisplay
+import COGSProjectionDisplay from "@/components/COGSProjectionDisplay"; // Import COGSProjectionDisplay
 
 // Import specific spinners
 import SalesDataSpinner from "@/components/SalesDataSpinner";
@@ -35,7 +37,7 @@ import ProfitMarginSpinner from "@/components/ProfitMarginSpinner";
 import ExpenseManagementSpinner from "@/components/ExpenseManagementSpinner";
 import InventorySpinner from "@/components/InventorySpinner";
 import MarketShareSpinner from "@/components/MarketShareSpinner";
-import COGSProjectionSpinner from "@/components/COGSProjectionSpinner";
+import COGSProjectionSpinner from "@/components/COGSProjectionSpinner"; // Spinner for COGS projection
 
 // Define the InventoryData interface
 interface InventoryData {
@@ -109,7 +111,7 @@ async function submitUserMessage(userInput: string) {
   const ui = await streamUI({
     model: openai("gpt-4o"),
     initial: <SpinnerMessage />,
-    system: `You are a highly knowledgeable and efficient QSR Management Assistant with specific expertise in Jet's Pizza operations. Your role is to assist the General Manager in managing restaurant operations by providing insights and recommendations related to profit margins, inflation impact, expense management, market share analysis, and profitability.
+    system: `You are a highly knowledgeable and efficient QSR Management Assistant with specific expertise in Jet's Pizza operations. Your role is to assist the General Manager in managing restaurant operations by providing insights and recommendations related to profit margins, inflation impact, expense management, market share analysis, COGS projections, and profitability.
 
 Always provide actionable advice based on the provided data, delivering precise numerical responses without rounding values. When exact data is unavailable, use logical estimates or averages from the provided ranges to deliver a plausible response.
 `,
@@ -303,7 +305,7 @@ Always provide actionable advice based on the provided data, delivering precise 
       },
       expense_management: {
         description:
-          "Provides insights and recommendations on managing expenses. Use this when the user just asks what the expenses are",
+          "Provides insights and recommendations on managing expenses.",
         parameters: z.object({}).required(),
         generate: async function* () {
           yield (
@@ -352,60 +354,9 @@ Always provide actionable advice based on the provided data, delivering precise 
           );
         },
       },
-      expense_breakdown: {
-        description:
-          "Forecasts and provides a detailed breakdown of all major expenses, allowing adjustments to see their impact. Call when the user asks to forecast expenses",
-        parameters: z.object({}).required(),
-        generate: async function* () {
-          yield (
-            <BotCard>
-              <ExpenseManagementSpinner />
-            </BotCard>
-          );
-
-          const toolCallId = nanoid();
-
-          aiState.done({
-            ...aiState.get(),
-            messages: [
-              ...aiState.get().messages,
-              {
-                id: nanoid(),
-                role: "assistant",
-                content: [
-                  {
-                    type: "tool-call",
-                    toolName: "expense_breakdown",
-                    toolCallId,
-                    args: {},
-                  },
-                ],
-              },
-              {
-                id: nanoid(),
-                role: "tool",
-                content: [
-                  {
-                    type: "tool-result",
-                    toolName: "expense_breakdown",
-                    toolCallId,
-                    result: null,
-                  },
-                ],
-              },
-            ],
-          });
-
-          return (
-            <BotCard>
-              <ExpenseBreakdownDisplay />
-            </BotCard>
-          );
-        },
-      },
       inventory_ordering: {
         description:
-          "Recommends inventory ordering quantities based on data, considering projections. Call this when the user asks to see the inventory.",
+          "Recommends inventory ordering quantities based on data, considering projections. Call this when the user asks to see the inventory",
         parameters: z.object({}).required(),
         generate: async function* () {
           yield (
@@ -505,7 +456,57 @@ Always provide actionable advice based on the provided data, delivering precise 
           );
         },
       },
-      // Include other tools as needed
+      cogs_projection: {
+        description:
+          "Provides a projection of COGS (Cost of Goods Sold) for the next five years based on inflation and steady sales growth.",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <COGSProjectionSpinner />
+            </BotCard>
+          );
+
+          const toolCallId = nanoid();
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "cogs_projection",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "cogs_projection",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+
+          return (
+            <BotCard>
+              <COGSProjectionDisplay />
+            </BotCard>
+          );
+        },
+      },
     },
   });
 
@@ -571,12 +572,6 @@ export const getUIStateFromAIState = (aiState: Chat) => {
                     <ExpenseManagementDisplay />
                   </BotCard>
                 );
-              case "expense_breakdown":
-                return (
-                  <BotCard key={tool.toolCallId}>
-                    <ExpenseBreakdownDisplay />
-                  </BotCard>
-                );
               case "inventory_ordering":
                 return (
                   <BotCard key={tool.toolCallId}>
@@ -589,7 +584,12 @@ export const getUIStateFromAIState = (aiState: Chat) => {
                     <MarketShareDisplay />
                   </BotCard>
                 );
-              // Include other cases as needed
+              case "cogs_projection":
+                return (
+                  <BotCard key={tool.toolCallId}>
+                    <COGSProjectionDisplay />
+                  </BotCard>
+                );
               default:
                 return null;
             }

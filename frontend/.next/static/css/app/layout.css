@@ -970,6 +970,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
+.text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
+}
 .text-green-700 {
   --tw-text-opacity: 1;
   color: rgb(21 128 61 / var(--tw-text-opacity));
@@ -1001,15 +1005,8 @@ video {
   --tw-text-opacity: 1;
   color: rgb(161 98 7 / var(--tw-text-opacity));
 }
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
-}
 .opacity-25 {
   opacity: 0.25;
-}
-.opacity-40 {
-  opacity: 0.4;
 }
 .opacity-60 {
   opacity: 0.6;
@@ -1019,9 +1016,6 @@ video {
 }
 .opacity-75 {
   opacity: 0.75;
-}
-.opacity-90 {
-  opacity: 0.9;
 }
 .opacity-80 {
   opacity: 0.8;
