@@ -107,7 +107,7 @@ export default function Chatbot() {
                     <>
                         <div className="flex flex-col bg-custom-black rounded-xl p-7 mx-3">
                             <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-red-500 text-4xl">
-                                Data Assistant
+                            Restaurant Assistant
                             </h1>
                             <h2 className="text-sm text-white opacity-70 mt-2 mb-5">
                                 Use this interactive chat to ask questions about your business operations, including sales projections, cost analysis, inventory needs, and market share trends, and receive real-time insights and recommendations.
