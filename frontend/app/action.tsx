@@ -1,5 +1,3 @@
-// action.tsx
-
 import "server-only";
 
 import {
@@ -21,157 +19,72 @@ import {
 } from "@/components/Messages";
 import { nanoid } from "@/lib/utils";
 
-// Import new UI components
+// Import UI components
 import SalesAnalysisDisplay from "@/components/SalesAnalysisDisplay";
 import InventoryDisplay from "@/components/InventoryDisplay";
-import StaffingForecastDisplay from "@/components/StaffingForecastDisplay";
 import CostAnalysisDisplay from "@/components/CostAnalysisDisplay";
-import GeneralOperationsDisplay from "@/components/GeneralOperationsDisplay";
+import ProfitMarginDisplay from "@/components/ProfitMarginDisplay";
+import ExpenseManagementDisplay from "@/components/ExpenseManagementDisplay";
+import MarketShareDisplay from "@/components/MarketShareDisplay";
+import ExpenseBreakdownDisplay from "@/components/ExpenseBreakdownDisplay"; // Import ExpenseBreakdownDisplay
 
 // Import specific spinners
-import { SalesDataSpinner } from "@/components/SalesDataSpinner";
-import { InventorySpinner } from "@/components/InventorySpinner";
-import StaffingSpinner from "@/components/StaffingSpinner";
+import SalesDataSpinner from "@/components/SalesDataSpinner";
 import CostAnalysisSpinner from "@/components/CostAnalysisSpinner";
-import GeneralOperationsSpinner from "@/components/GeneralOperationsSpinner";
+import ProfitMarginSpinner from "@/components/ProfitMarginSpinner";
+import ExpenseManagementSpinner from "@/components/ExpenseManagementSpinner";
+import InventorySpinner from "@/components/InventorySpinner";
+import MarketShareSpinner from "@/components/MarketShareSpinner";
+import COGSProjectionSpinner from "@/components/COGSProjectionSpinner";
 
-// Type definitions
-type SalesData = {
-  currentWeekSales: number;
-  lastYearSameWeekSales: number;
-  weeklySalesRange: [number, number];
-  annualSalesLastYear: number;
-  factorsImpactingSales: string[];
-  projectedSales: { [week: string]: number };
-};
-
-type InventoryData = {
+// Define the InventoryData interface
+interface InventoryData {
   currentInventory: { [item: string]: number };
   projectedNeeds: { [item: string]: number };
   historicalComparison: { [item: string]: number };
+}
+
+// Create the data object
+const inventoryData: InventoryData = {
+  currentInventory: {
+    Cheese: 115,
+    Dough: 250,
+    "Tomato Sauce": 180,
+    Pepperoni: 100,
+    Mushrooms: 70,
+    Onions: 60,
+    "Bell Peppers": 55,
+    Olives: 45,
+    Sausage: 85,
+    "Garlic Butter": 40,
+  },
+  projectedNeeds: {
+    Cheese: 120,
+    Dough: 220,
+    "Tomato Sauce": 160,
+    Pepperoni: 90,
+    Mushrooms: 60,
+    Onions: 50,
+    "Bell Peppers": 45,
+    Olives: 40,
+    Sausage: 75,
+    "Garlic Butter": 35,
+  },
+  historicalComparison: {
+    Cheese: 118,
+    Dough: 235,
+    "Tomato Sauce": 170,
+    Pepperoni: 95,
+    Mushrooms: 65,
+    Onions: 55,
+    "Bell Peppers": 50,
+    Olives: 42,
+    Sausage: 80,
+    "Garlic Butter": 38,
+  },
 };
 
-// action.tsx
-type StaffingData = {
-    averageWeeklyHours: number;
-    predictedIncreasePercentage: number;
-    forecastForNextWeek: number;
-    historicalHours: number[]; // Added this line
-  };
-  
-  
-
-type COGSData = {
-  year1: number;
-  year2: number;
-  year3: number;
-};
-
-type GeneralOperationsData = {
-  recommendations: string[];
-};
-
-// Data fetching functions (using improved dummy data)
-async function fetchSalesData(): Promise<SalesData> {
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return {
-    currentWeekSales: 38764.92,
-    lastYearSameWeekSales: 42342.76,
-    weeklySalesRange: [25764.92, 45987.63],
-    annualSalesLastYear: 152422.78,
-    factorsImpactingSales: [
-      "School session started 1 week earlier",
-      "Current week temperature: 10 degrees hotter",
-    ],
-    projectedSales: {
-      "Week 1": 40000,
-      "Week 2": 41000,
-      "Week 3": 42000,
-      "Week 4": 43000,
-      "Week 5": 44000,
-      "Week 6": 45000,
-      "Week 7": 46000,
-      "Week 8": 47000,
-    },
-  };
-}
-
-async function fetchInventoryData(): Promise<InventoryData> {
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return {
-    currentInventory: {
-      Tomato: 722,
-      Flour: 3561.5,
-      Cheese: 973.25,
-      Pepperoni: 449.75,
-      Dough: 2973,
-      Sausage: 532,
-      Chicken: 860.5,
-      Onion: 455.5,
-      Mushroom: 358,
-      Oil: 108.25,
-    },
-    projectedNeeds: {
-        Tomato: 622,
-        Flour: 1561.5,
-        Cheese: 1973.25,
-        Pepperoni: 349.75,
-        Dough: 2373,
-        Sausage: 332,
-        Chicken: 460.5,
-        Onion: 155.5,
-        Mushroom: 158,
-        Oil: 98.25,
-    },
-    historicalComparison: {
-      Cheese: 980.45,
-      Dough: 2380.1,
-      Tomato: 630.32,
-    },
-  };
-}
-
-async function fetchStaffingData(): Promise<StaffingData> {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-  
-    return {
-      averageWeeklyHours: 400.42,
-      predictedIncreasePercentage: 15.5,
-      forecastForNextWeek: 462.48,
-      historicalHours: [380, 395, 410, 400, 405, 412], // Example data for the past 6 weeks
-    };
-  }
-  
-
-async function fetchCOGSData(): Promise<COGSData> {
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return {
-    year1: 28056.34,
-    year2: 27234.87,
-    year3: 26509.24,
-  };
-}
-
-async function fetchGeneralOperationsData(): Promise<GeneralOperationsData> {
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return {
-    recommendations: [
-      "Implement targeted promotions during peak hours.",
-      "Optimize supplier contracts to reduce COGS.",
-      "Adjust staffing schedules to align with predicted traffic.",
-    ],
-  };
-}
-
+// The submitUserMessage function
 async function submitUserMessage(userInput: string) {
   "use server";
   const aiState = getMutableAIState<typeof AI>();
@@ -196,52 +109,10 @@ async function submitUserMessage(userInput: string) {
   const ui = await streamUI({
     model: openai("gpt-4o"),
     initial: <SpinnerMessage />,
-    system: `You are a highly knowledgeable and efficient QSR Management Assistant with specific expertise in Jet's Pizza operations. Your role is to assist the General Manager in managing restaurant operations by providing insights and recommendations related to staffing, inventory, sales, promotions, cost analysis, and profitability. Always provide actionable advice based on the provided data, delivering precise numerical responses without rounding values. Use data points like $38,764.92 for sales and $152,422.78 for yearly totals when requested.
+    system: `You are a highly knowledgeable and efficient QSR Management Assistant with specific expertise in Jet's Pizza operations. Your role is to assist the General Manager in managing restaurant operations by providing insights and recommendations related to profit margins, inflation impact, expense management, market share analysis, and profitability.
 
-When exact data is unavailable, use logical estimates or averages from the provided ranges to deliver a plausible response. Do not indicate that the data is missing; instead, perform calculations or make assumptions as needed to provide a confident answer. Don't explain the calculations, just provide the final answer.
-
-You are well-versed in Jet's Pizza, known for its Detroit-style deep-dish pizza and signature Turbo Crust. Jet's Pizza operates within a highly competitive pizza industry, with factors like franchise fees, economies of scale, labor costs, and real estate significantly impacting profit margins. The general gross margin for pizza restaurants ranges from 60% to 75%, and net profit margins typically range from 5% to 15%, with franchises like Jet's benefiting from bulk purchasing and brand loyalty.
-
-Always ensure that your responses are based on exact figures when possible, but if exact data is not available, use reasonable estimates based on averages and provided ranges.
-
-**Jet's Pizza Financial and Operational Data:**
-
-- **Annual Sales (Last Year):** $152,422.78
-- **Weekly Sales:** Ranges from $25,764.92 to $45,987.63 depending on promotions and events
-- **Gross Margin (Pizza Industry Standard):** 60% to 75%
-- **Net Profit Margin (Pizza Industry Standard):** 5% to 15%
-- **Franchise Fees:** Typically 4% to 8% of gross sales
-
-1. **Staffing Forecast:**
-   - Average weekly hours (last 6 weeks): 400.42 hours
-   - Predicted increase for next week: 15.5% due to promotions and events
-   - Forecast for next week: 462.48 hours
-
-2. **Sales Estimation and Inventory Management:**
-   - **Sales Estimation:** Calculate based on the provided range of $25,764.92 to $45,987.63 per week. Use the average if no specific data is given.
-   - Always provide a plausible sales figure without asking for additional input or stating that data is missing.
-
-3. **Advanced Inventory Management (Jet's Pizza Specific):**
-   - Inventory is tracked weekly and monthly with historical data for comparison.
-   - Use the provided data to offer accurate inventory levels, projections, and ordering recommendations.
-
-4. **Sales Comparison (Jet's Pizza):**
-   - Last year’s sales during this period: $42,342.76/week
-   - Current sales: $38,764.92/week
-   - Key differences:
-     - School session started 1 week earlier
-     - Current week temperature: 10 degrees hotter
-
-5. **COGS Pricing Chart (Last 3 Years):**
-   - Year 1: Average COGS price: $28,056.34/month
-   - Year 2: Average COGS price: $27,234.87/month
-   - Year 3: Average COGS price: $26,509.24/month
-
-**Behavior:**
-- For sales questions, estimate based on provided ranges or trends.
-- For inventory, refer to current levels or projections.
-- Use historical data for comparisons.
-- Provide legitimate responses based on data, making reasonable assumptions without stating data is missing.`,
+Always provide actionable advice based on the provided data, delivering precise numerical responses without rounding values. When exact data is unavailable, use logical estimates or averages from the provided ranges to deliver a plausible response.
+`,
 
     messages: [
       ...aiState.get().messages.map((message: any) => ({
@@ -288,7 +159,6 @@ Always ensure that your responses are based on exact figures when possible, but 
             </BotCard>
           );
 
-          const salesData = await fetchSalesData();
           const toolCallId = nanoid();
 
           aiState.done({
@@ -315,7 +185,7 @@ Always ensure that your responses are based on exact figures when possible, but 
                     type: "tool-result",
                     toolName: "sales_analysis",
                     toolCallId,
-                    result: salesData,
+                    result: null,
                   },
                 ],
               },
@@ -324,13 +194,14 @@ Always ensure that your responses are based on exact figures when possible, but 
 
           return (
             <BotCard>
-              <SalesAnalysisDisplay data={salesData} />
+              <SalesAnalysisDisplay />
             </BotCard>
           );
         },
       },
       cost_analysis: {
-        description: "Provides insights on COGS over the past few years.",
+        description:
+          "Provides insights on COGS over the past few years, including inflation impact.",
         parameters: z.object({}).required(),
         generate: async function* () {
           yield (
@@ -339,7 +210,6 @@ Always ensure that your responses are based on exact figures when possible, but 
             </BotCard>
           );
 
-          const cogsData = await fetchCOGSData();
           const toolCallId = nanoid();
 
           aiState.done({
@@ -366,7 +236,7 @@ Always ensure that your responses are based on exact figures when possible, but 
                     type: "tool-result",
                     toolName: "cost_analysis",
                     toolCallId,
-                    result: cogsData,
+                    result: null,
                   },
                 ],
               },
@@ -375,13 +245,167 @@ Always ensure that your responses are based on exact figures when possible, but 
 
           return (
             <BotCard>
-              <CostAnalysisDisplay data={cogsData} />
+              <CostAnalysisDisplay />
+            </BotCard>
+          );
+        },
+      },
+      profit_margin_analysis: {
+        description:
+          "Analyzes how projections in revenue, staffing, expenses, or inventory affect profit margins and provides recommendations.",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <ProfitMarginSpinner />
+            </BotCard>
+          );
+
+          const toolCallId = nanoid();
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "profit_margin_analysis",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "profit_margin_analysis",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+
+          return (
+            <BotCard>
+              <ProfitMarginDisplay />
+            </BotCard>
+          );
+        },
+      },
+      expense_management: {
+        description:
+          "Provides insights and recommendations on managing expenses. Use this when the user just asks what the expenses are",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <ExpenseManagementSpinner />
+            </BotCard>
+          );
+
+          const toolCallId = nanoid();
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "expense_management",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "expense_management",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+
+          return (
+            <BotCard>
+              <ExpenseManagementDisplay />
+            </BotCard>
+          );
+        },
+      },
+      expense_breakdown: {
+        description:
+          "Forecasts and provides a detailed breakdown of all major expenses, allowing adjustments to see their impact. Call when the user asks to forecast expenses",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <ExpenseManagementSpinner />
+            </BotCard>
+          );
+
+          const toolCallId = nanoid();
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "expense_breakdown",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "expense_breakdown",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+
+          return (
+            <BotCard>
+              <ExpenseBreakdownDisplay />
             </BotCard>
           );
         },
       },
       inventory_ordering: {
-        description: "Recommends inventory ordering quantities based on data.",
+        description:
+          "Recommends inventory ordering quantities based on data, considering projections. Call this when the user asks to see the inventory.",
         parameters: z.object({}).required(),
         generate: async function* () {
           yield (
@@ -390,7 +414,6 @@ Always ensure that your responses are based on exact figures when possible, but 
             </BotCard>
           );
 
-          const inventoryData = await fetchInventoryData();
           const toolCallId = nanoid();
 
           aiState.done({
@@ -417,7 +440,7 @@ Always ensure that your responses are based on exact figures when possible, but 
                     type: "tool-result",
                     toolName: "inventory_ordering",
                     toolCallId,
-                    result: inventoryData,
+                    result: null,
                   },
                 ],
               },
@@ -431,17 +454,17 @@ Always ensure that your responses are based on exact figures when possible, but 
           );
         },
       },
-      staffing_forecast: {
-        description: "Forecasts staffing needs for upcoming weeks.",
+      market_share_analysis: {
+        description:
+          "Analyzes market share trends and provides strategies to increase market share.",
         parameters: z.object({}).required(),
         generate: async function* () {
           yield (
             <BotCard>
-              <StaffingSpinner />
+              <MarketShareSpinner />
             </BotCard>
           );
 
-          const staffingData = await fetchStaffingData();
           const toolCallId = nanoid();
 
           aiState.done({
@@ -454,7 +477,7 @@ Always ensure that your responses are based on exact figures when possible, but 
                 content: [
                   {
                     type: "tool-call",
-                    toolName: "staffing_forecast",
+                    toolName: "market_share_analysis",
                     toolCallId,
                     args: {},
                   },
@@ -466,9 +489,9 @@ Always ensure that your responses are based on exact figures when possible, but 
                 content: [
                   {
                     type: "tool-result",
-                    toolName: "staffing_forecast",
+                    toolName: "market_share_analysis",
                     toolCallId,
-                    result: staffingData,
+                    result: null,
                   },
                 ],
               },
@@ -477,62 +500,12 @@ Always ensure that your responses are based on exact figures when possible, but 
 
           return (
             <BotCard>
-              <StaffingForecastDisplay data={staffingData} />
+              <MarketShareDisplay />
             </BotCard>
           );
         },
       },
-      general_operations: {
-        description: "Provides general recommendations for operations.",
-        parameters: z.object({}).required(),
-        generate: async function* () {
-          yield (
-            <BotCard>
-              <GeneralOperationsSpinner />
-            </BotCard>
-          );
-
-          const operationsData = await fetchGeneralOperationsData();
-          const toolCallId = nanoid();
-
-          aiState.done({
-            ...aiState.get(),
-            messages: [
-              ...aiState.get().messages,
-              {
-                id: nanoid(),
-                role: "assistant",
-                content: [
-                  {
-                    type: "tool-call",
-                    toolName: "general_operations",
-                    toolCallId,
-                    args: {},
-                  },
-                ],
-              },
-              {
-                id: nanoid(),
-                role: "tool",
-                content: [
-                  {
-                    type: "tool-result",
-                    toolName: "general_operations",
-                    toolCallId,
-                    result: operationsData,
-                  },
-                ],
-              },
-            ],
-          });
-
-          return (
-            <BotCard>
-              <GeneralOperationsDisplay data={operationsData} />
-            </BotCard>
-          );
-        },
-      },
+      // Include other tools as needed
     },
   });
 
@@ -577,33 +550,46 @@ export const getUIStateFromAIState = (aiState: Chat) => {
               case "sales_analysis":
                 return (
                   <BotCard key={tool.toolCallId}>
-                    <SalesAnalysisDisplay data={tool.result} />
+                    <SalesAnalysisDisplay />
                   </BotCard>
                 );
               case "cost_analysis":
                 return (
                   <BotCard key={tool.toolCallId}>
-                    <CostAnalysisDisplay data={tool.result} />
+                    <CostAnalysisDisplay />
+                  </BotCard>
+                );
+              case "profit_margin_analysis":
+                return (
+                  <BotCard key={tool.toolCallId}>
+                    <ProfitMarginDisplay />
+                  </BotCard>
+                );
+              case "expense_management":
+                return (
+                  <BotCard key={tool.toolCallId}>
+                    <ExpenseManagementDisplay />
+                  </BotCard>
+                );
+              case "expense_breakdown":
+                return (
+                  <BotCard key={tool.toolCallId}>
+                    <ExpenseBreakdownDisplay />
                   </BotCard>
                 );
               case "inventory_ordering":
                 return (
                   <BotCard key={tool.toolCallId}>
-                    <InventoryDisplay data={tool.result} />
+                    <InventoryDisplay data={inventoryData} />
                   </BotCard>
                 );
-              case "staffing_forecast":
+              case "market_share_analysis":
                 return (
                   <BotCard key={tool.toolCallId}>
-                    <StaffingForecastDisplay data={tool.result} />
+                    <MarketShareDisplay />
                   </BotCard>
                 );
-              case "general_operations":
-                return (
-                  <BotCard key={tool.toolCallId}>
-                    <GeneralOperationsDisplay data={tool.result} />
-                  </BotCard>
-                );
+              // Include other cases as needed
               default:
                 return null;
             }

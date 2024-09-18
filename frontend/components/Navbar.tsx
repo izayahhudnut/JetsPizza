@@ -11,7 +11,7 @@ export default function Navbar () {
     const isProductsPage = pathname === '/products';
 
     return (
-        <div className="flex flex-row px-4 justify-between w-full items-center py-3 ">
+        <div className="flex flex-row px-4 justify-between w-full items-center py-3 justify-center">
             <Link href="https://www.jetspizza.com/">
                 <Image
                     src={"/logo.png"}

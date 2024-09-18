@@ -5,16 +5,13 @@ import { AI, getUIStateFromAIState, UIState } from "@/app/action";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import { nanoid } from "@/lib/utils";
 import { UserMessage } from "./Messages";
+import Dashboard from "@/components/Dashboard"; // Import Dashboard
 
 export default function Chatbot() {
     const [inputValue, setInputValue] = useState("");
     const [messages, setMessages] = useUIState<typeof AI>();
-    // const aiState = useAIState<typeof AI>();
     const { submitUserMessage } = useActions<typeof AI>();
     const [isLoading, setIsLoading] = useState(false);
-
-
-    // const uiState: UIState = getUIStateFromAIState();
 
     const handlePromptClick = async (promptText: string) => {
         setIsLoading(true);
@@ -37,8 +34,6 @@ export default function Chatbot() {
         setIsLoading(false);
     };
 
-    
-
     return (
         <div className="relative max-w-[50rem] mx-auto">
             <div
@@ -46,14 +41,17 @@ export default function Chatbot() {
                 style={{ height: "calc(100vh - 5.0rem)" }}
             >
                 {messages.length === 0 ? (
-                    <div className=" flex flex-col bg-custom-black rounded-xl p-7  mx-3">
-                        <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-red-500 text-4xl">
-                            Data Assistant
-                        </h1>
-                        <h2 className="text-sm  text-white opacity-70 mt-2 mb-5">
-                        Your go-to guide for Jet's Pizza company insights, sales data, and inventory information
-                        </h2>
-                    </div>
+                    <>
+                        <div className="flex flex-col bg-custom-black rounded-xl p-7 mx-3">
+                            <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-red-500 text-4xl">
+                                Data Assistant
+                            </h1>
+                            <h2 className="text-sm text-white opacity-70 mt-2 mb-5">
+                                Use this interactive chat to ask questions about your business operations, including sales projections, cost analysis, inventory needs, and market share trends, and receive real-time insights and recommendations.
+                            </h2>
+                        </div>
+                        <Dashboard />
+                    </>
                 ) : (
                     <div className="h-full overflow-y-scroll space-y-5 pb-20 scrollbar-none ">
                         {messages.map((message, index) => (
@@ -71,13 +69,13 @@ export default function Chatbot() {
                                     className="relative bg-custom-gray py-3 mb-2 sm:ml-2 ml-0 px-3 rounded-xl items-center flex flex-row hover:cursor-pointer shadow-sm"
                                     onClick={() =>
                                         handlePromptClick(
-                                            "What were our sales last week?"
+                                            "What were our sales last year?"
                                         )
                                     }
                                 >
                                     <AutoFixHighIcon style={{ color: 'black' }} className="animate-pulse" />
                                     <h1 className="ml-2 max-sm:text-xs text-black">
-                                        What were our sales last week?
+                                        What were our sales last year?
                                     </h1>
                                 </button>
                                 <button
