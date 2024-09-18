@@ -27,8 +27,9 @@ import InventoryDisplay from "@/components/InventoryDisplay";
 import CostAnalysisDisplay from "@/components/CostAnalysisDisplay";
 import ProfitMarginDisplay from "@/components/ProfitMarginDisplay";
 import ExpenseManagementDisplay from "@/components/ExpenseManagementDisplay";
-import MarketShareDisplay from "@/components/MarketShareDisplay"; // Import MarketShareDisplay
-import COGSProjectionDisplay from "@/components/COGSProjectionDisplay"; // Import COGSProjectionDisplay
+import MarketShareDisplay from "@/components/MarketShareDisplay"; 
+import COGSProjectionDisplay from "@/components/COGSProjectionDisplay"; 
+import ExpenseBreakdownDisplay from "@/components/ExpenseBreakdownDisplay"; // Import ExpenseBreakdownDisplay
 
 // Import specific spinners
 import SalesDataSpinner from "@/components/SalesDataSpinner";
@@ -37,7 +38,8 @@ import ProfitMarginSpinner from "@/components/ProfitMarginSpinner";
 import ExpenseManagementSpinner from "@/components/ExpenseManagementSpinner";
 import InventorySpinner from "@/components/InventorySpinner";
 import MarketShareSpinner from "@/components/MarketShareSpinner";
-import COGSProjectionSpinner from "@/components/COGSProjectionSpinner"; // Spinner for COGS projection
+import COGSProjectionSpinner from "@/components/COGSProjectionSpinner";
+import ExpenseBreakdownSpinner from "@/components/ExpenseBreakdownSpinner";
 
 // Define the InventoryData interface
 interface InventoryData {
@@ -305,7 +307,7 @@ Always provide actionable advice based on the provided data, delivering precise 
       },
       expense_management: {
         description:
-          "Provides insights and recommendations on managing expenses. This is useful if the user asks for a scenerio like what if I fired 5 people or what if I stopped spending money on marketing",
+          "Shows expenses for this year and the previous 3 years",
         parameters: z.object({}).required(),
         generate: async function* () {
           yield (
@@ -507,6 +509,57 @@ Always provide actionable advice based on the provided data, delivering precise 
           );
         },
       },
+      expense_breakdown: {
+        description:
+          "Breaks down all expenses and allows for adjusting individual expenses to see how they affect the overall business. Call this when the user wants to play out a scenerio like what if i fired 10 people or what if i stoped spending money on marketing",
+        parameters: z.object({}).required(),
+        generate: async function* () {
+          yield (
+            <BotCard>
+              <ExpenseBreakdownSpinner />
+            </BotCard>
+          );
+
+          const toolCallId = nanoid();
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: "assistant",
+                content: [
+                  {
+                    type: "tool-call",
+                    toolName: "expense_breakdown",
+                    toolCallId,
+                    args: {},
+                  },
+                ],
+              },
+              {
+                id: nanoid(),
+                role: "tool",
+                content: [
+                  {
+                    type: "tool-result",
+                    toolName: "expense_breakdown",
+                    toolCallId,
+                    result: null,
+                  },
+                ],
+              },
+            ],
+          });
+
+          return (
+            <BotCard>
+              <ExpenseBreakdownDisplay />
+            </BotCard>
+          );
+        },
+      },
     },
   });
 
@@ -588,6 +641,12 @@ export const getUIStateFromAIState = (aiState: Chat) => {
                 return (
                   <BotCard key={tool.toolCallId}>
                     <COGSProjectionDisplay />
+                  </BotCard>
+                );
+              case "expense_breakdown":
+                return (
+                  <BotCard key={tool.toolCallId}>
+                    <ExpenseBreakdownDisplay />
                   </BotCard>
                 );
               default:
