@@ -305,7 +305,7 @@ Always provide actionable advice based on the provided data, delivering precise 
       },
       expense_management: {
         description:
-          "Provides insights and recommendations on managing expenses.",
+          "Provides insights and recommendations on managing expenses. This is useful if the user asks for a scenerio like what if I fired 5 people or what if I stopped spending money on marketing",
         parameters: z.object({}).required(),
         generate: async function* () {
           yield (
