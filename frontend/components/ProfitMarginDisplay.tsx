@@ -26,7 +26,7 @@ async function fetchFinancialData(): Promise<FinancialData> {
   await new Promise((resolve) => setTimeout(resolve, 500));
 
   return {
-    years: [2020, 2021, 2022],
+    years: [2021, 2022, 2023],
     revenue: [500000, 550000, 600000],
     cogs: [200000, 220000, 240000],
     expenses: [150000, 160000, 170000],
