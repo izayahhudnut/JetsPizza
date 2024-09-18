@@ -3,7 +3,7 @@ import React from "react";
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="flex flex-col bg-white rounded-xl p-6 mx-3 mt-5 space-y-6 mt-[-250px]">
+    <div className="flex flex-col bg-white rounded-xl p-6 mx-3 mt-5 space-y-6">
       <h2 className="text-lg font-semibold text-black opacity-70">
         Business Overview
       </h2>
